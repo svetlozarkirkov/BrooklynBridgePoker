@@ -6,16 +6,21 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class BrooklynBridgePoker extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
         Button newGame = new Button();
         newGame.setText("New Game");
-        newGame.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        newGame.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -27,7 +32,7 @@ public class BrooklynBridgePoker extends Application {
         Button options = new Button();
         options.setText("Options");
         options.setTranslateY(50);
-        options.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        options.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
         options.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -38,7 +43,7 @@ public class BrooklynBridgePoker extends Application {
         
         Button exitGame = new Button();
         exitGame.setText("Exit");
-        exitGame.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        exitGame.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
         exitGame.setTranslateY(100);
         exitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
@@ -47,15 +52,22 @@ public class BrooklynBridgePoker extends Application {
             }
         });
         
+        Image background = new Image("/brooklynbridgepoker/background.jpg");
+        ImageView bckg = new ImageView(background);
+                       
         StackPane root = new StackPane();
+        root.getChildren().add(bckg);
         root.getChildren().add(newGame);
         root.getChildren().add(options);
         root.getChildren().add(exitGame);
         
-        Scene scene = new Scene(root, 840, 480);
+        
+        Scene scene = new Scene(root, 840, 580);
         
         primaryStage.setTitle("Brooklyn Bridge Poker");
         primaryStage.setScene(scene);
+        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.setResizable(false);
         primaryStage.show();
     }
 
