@@ -6,17 +6,17 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.BlendMode;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class BrooklynBridgePoker extends Application {
     
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws InterruptedException {
         
         Button newGame = new Button();
         newGame.setText("New Game");
@@ -52,11 +52,35 @@ public class BrooklynBridgePoker extends Application {
             }
         });
         
-        Image background = new Image("/brooklynbridgepoker/background.jpg");
+        Image background = new Image("/brooklynbridgepoker/images/mainmenubackground.jpg");
         ImageView bckg = new ImageView(background);
-                       
+        bckg.setScaleX(0.50);
+        bckg.setScaleY(0.50);
+        
+        // below to be deleted
+        
+        Image testCard = new Image("/brooklynbridgepoker/images/cards/13.png");
+        ImageView tstCrd = new ImageView(testCard);
+        tstCrd.setBlendMode(BlendMode.SRC_ATOP);
+        tstCrd.setScaleX(1);
+        tstCrd.setScaleY(1);
+        tstCrd.setTranslateX(-300);
+        tstCrd.setTranslateY(-150);
+        
+        Image testCard2 = new Image("/brooklynbridgepoker/images/cards/15.png");
+        ImageView tstCrd2 = new ImageView(testCard2);
+        tstCrd2.setBlendMode(BlendMode.SRC_ATOP);
+        tstCrd2.setScaleX(1);
+        tstCrd2.setScaleY(1);
+        tstCrd2.setTranslateX(-200);
+        tstCrd2.setTranslateY(-150);
+        
+        // above to be deleted
+        
         StackPane root = new StackPane();
         root.getChildren().add(bckg);
+        root.getChildren().add(tstCrd);
+        root.getChildren().add(tstCrd2);
         root.getChildren().add(newGame);
         root.getChildren().add(options);
         root.getChildren().add(exitGame);
@@ -66,7 +90,7 @@ public class BrooklynBridgePoker extends Application {
         
         primaryStage.setTitle("Brooklyn Bridge Poker");
         primaryStage.setScene(scene);
-        primaryStage.initStyle(StageStyle.UNIFIED);
+        primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setResizable(false);
         primaryStage.show();
     }
