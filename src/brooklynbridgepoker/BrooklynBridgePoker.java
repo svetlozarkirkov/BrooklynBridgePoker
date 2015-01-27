@@ -15,6 +15,7 @@ public class BrooklynBridgePoker extends Application {
     public void start(Stage primaryStage) {
         Button newGame = new Button();
         newGame.setText("New Game");
+        newGame.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -25,7 +26,8 @@ public class BrooklynBridgePoker extends Application {
         
         Button options = new Button();
         options.setText("Options");
-        options.setTranslateY(40);
+        options.setTranslateY(50);
+        options.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
         options.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
@@ -36,7 +38,8 @@ public class BrooklynBridgePoker extends Application {
         
         Button exitGame = new Button();
         exitGame.setText("Exit");
-        exitGame.setTranslateY(80);
+        exitGame.setStyle("-fx-font: 22 arial; -fx-base: #b6e7c9;");
+        exitGame.setTranslateY(100);
         exitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
