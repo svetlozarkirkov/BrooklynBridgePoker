@@ -1,6 +1,7 @@
 
 package brooklynbridgepoker;
 
+import javafx.animation.RotateTransition;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,12 +9,14 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.MotionBlur;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Duration;
 
 public class BrooklynBridgePoker extends Application {
     
@@ -25,6 +28,9 @@ public class BrooklynBridgePoker extends Application {
         dropShadow.setOffsetY(10);
         dropShadow.setColor(Color.rgb(50, 50, 50, 0.7));
         
+        MotionBlur mb = new MotionBlur();
+        mb.setRadius(15.0f);
+        mb.setAngle(45.0f);
         
         Button newGame = new Button();
         newGame.setText("New Game");
@@ -68,6 +74,7 @@ public class BrooklynBridgePoker extends Application {
         bckg.setScaleX(0.50);
         bckg.setScaleY(0.50);
         bckg.setOpacity(80);
+        bckg.setEffect(mb);
         
         // below to be deleted
         
@@ -89,6 +96,7 @@ public class BrooklynBridgePoker extends Application {
         tstCrd2.setTranslateY(-150);
         tstCrd2.setEffect(dropShadow);
         
+               
         // above to be deleted
         
         StackPane root = new StackPane();
