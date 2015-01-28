@@ -1,6 +1,10 @@
 
 package brooklynbridgepoker;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
@@ -49,11 +53,20 @@ public class BrooklynBridgePoker extends Application {
 		}
 		return deck;
 	}
-    
+    public static ArrayList<String> cpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
+        ArrayList<String> names = new ArrayList<String>();
+        BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
+        String line = reader.readLine();
+        while (line != null) {
+          names.add(line);
+          line = reader.readLine();
+        }
+        return names;
+    }
     
     
     @Override
-    public void start(Stage primaryStage) throws InterruptedException {
+    public void start(Stage primaryStage) throws InterruptedException, IOException {
         
         DropShadow dropShadow = new DropShadow();   // dropshadow that is below the cards
         dropShadow.setOffsetX(9);
@@ -161,10 +174,10 @@ public class BrooklynBridgePoker extends Application {
             pathTransition.setAutoReverse(false);
             pathTransition.play();
         }
-       
+        ArrayList<String> getCPUnames = cpuNamesList();
+        
         // above is for testing, to be deleted
-        
-        
+       
         Screen screen = Screen.getPrimary();        // starting with maximized window
         Rectangle2D bounds = screen.getVisualBounds();
 
@@ -174,14 +187,12 @@ public class BrooklynBridgePoker extends Application {
         primaryStage.setHeight(bounds.getHeight());
         primaryStage.setFullScreen(true);
         
-        
         primaryStage.setTitle("Brooklyn Bridge Poker"); // title of the window
-                 Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+           Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setResizable(false);   // the window cannot be resized
         primaryStage.show();
-        
         
     }
 

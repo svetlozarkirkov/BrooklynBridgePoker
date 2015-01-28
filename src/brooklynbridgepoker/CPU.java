@@ -12,7 +12,7 @@ public class CPU {
     private int bet;    // holds the cpu bet
     
     private ArrayList<PlayCard> currentCards;   // holds the cpu hand
-    
+          
     public CPU(){   // default constructor
 		
 	}
@@ -26,6 +26,7 @@ public class CPU {
     public int getCPUBet(){ //gets the bet the cpu made
         return bet;
     }
+    
     public ArrayList<PlayCard> getCPUCurrentCards(){    // gets current cpu hand in arraylist
         return currentCards;
     }
