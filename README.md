@@ -10,4 +10,4 @@ OPTIONS MENU
           #normal - face down cards  
           #cheater - face up cards  
 
-
+TODO: https://trello.com/b/BOqbB6Wm
