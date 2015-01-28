@@ -43,9 +43,8 @@ public class BrooklynBridgePoker extends Application {
 				card.setRank(ranks[i]);
 				card.setSuit(suits[j]);
 				card.setFace(faces[i]);
-                                card.setImgPath(faces[i]+suits[j]);
-                                card.setFlippedCard();
-				deck.add(card);
+                                card.setImage(faces[i]+suits[j]);
+                                deck.add(card);
 			}
 		}
 		for (int x = 0; x < 100; x++){
@@ -123,11 +122,11 @@ public class BrooklynBridgePoker extends Application {
             }
         });
         
-        Image background = new Image("/brooklynbridgepoker/images/mainmenubackground.jpg");     // main menu background
+        Image background = new Image("/brooklynbridgepoker/images/table.jpg");     // main menu background
         ImageView bckg = new ImageView(background);
         bckg.setScaleX(0.7);   // smaller horizontally
         bckg.setScaleY(0.7);   // smaller vertically
-        bckg.setOpacity(80);    // 
+        bckg.setOpacity(90);    // 
         bckg.setEffect(mb);     // using the motion blur
  
         StackPane root = new StackPane();
@@ -143,38 +142,52 @@ public class BrooklynBridgePoker extends Application {
         int randomIndex = rand.nextInt(currentDeck.size()); // random index from the current deck size
         int x = -270;   // positions of x and y of the first card
         int y = -170;
-        
-        for (int i = 0; i < 5; i++){
-            Image testCard = new Image(currentDeck.get(randomIndex).getImgPath());  // the image of the random card
-            ImageView tstCrd = new ImageView(testCard);     
-            tstCrd.setBlendMode(BlendMode.SRC_ATOP);
-            tstCrd.setScaleX(1);    // how big horizontally
-            tstCrd.setScaleY(1);    // how big vertically
-            tstCrd.setTranslateX(x);    // move into x position
-            tstCrd.setTranslateY(y);    // move into y position
-            tstCrd.setEffect(dropShadow);   // uses the dropshadow effect
 
-            currentDeck.remove(randomIndex);    // removes the card from the current deck
-            randomIndex = rand.nextInt(currentDeck.size()); // new random index from the cards left
+
+        Image testCard = new Image(currentDeck.get(randomIndex).getImgPath());  // the image of the random card
+        ImageView tstCrd = new ImageView(testCard);     
+        tstCrd.setBlendMode(BlendMode.SRC_ATOP);
+        tstCrd.setScaleX(1);    // how big horizontally
+        tstCrd.setScaleY(1);    // how big vertically
+        tstCrd.setTranslateX(x);    // move into x position
+        tstCrd.setTranslateY(y);    // move into y position
+        tstCrd.setEffect(dropShadow);   // uses the dropshadow effect
+
+        root.getChildren().add(tstCrd); // adding the card to the root
+
+        Path path = new Path();     // animation stuff :D
+        path.getElements().add(new MoveTo(-800,-150));
+        path.getElements().add(new CubicCurveTo(x-100, y, x-85, y, x, y));
+        path.getElements().add(new CubicCurveTo(x,y+30,x,y+50,x,y));
+        PathTransition pathTransition = new PathTransition();
+        pathTransition.setDuration(Duration.millis(2000));
+        pathTransition.setPath(path);
+        pathTransition.setNode(tstCrd);
+        pathTransition.setOrientation(PathTransition.OrientationType.NONE);
+        pathTransition.setCycleCount(1);
+        pathTransition.setAutoReverse(false);
+        pathTransition.play();
+        
+        newGame.setOnAction(new EventHandler<ActionEvent>() {
             
-            x+=100; // new position to the right of the old card
-            
-            root.getChildren().add(tstCrd); // adding the card to the root
-            
-            Path path = new Path();     // animation stuff :D
-            path.getElements().add(new MoveTo(-800,-150));
-            path.getElements().add(new CubicCurveTo(x-100, y, x-85, y, x, y));
-            path.getElements().add(new CubicCurveTo(x,y+30,x,y+50,x,y));
-            PathTransition pathTransition = new PathTransition();
-            pathTransition.setDuration(Duration.millis(2000));
-            pathTransition.setPath(path);
-            pathTransition.setNode(tstCrd);
-            pathTransition.setOrientation(PathTransition.OrientationType.NONE);
-            pathTransition.setCycleCount(1);
-            pathTransition.setAutoReverse(false);
-            pathTransition.play();
-        }
-        ArrayList<String> getCPUnames = cpuNamesList();
+            @Override
+            public void handle(ActionEvent event) {     // what new game button does - right now nothing :D
+                for (int i = 0; i < currentDeck.size();i++){
+                    currentDeck.get(i).flipCard();
+                    
+                }
+                Image testCard2 = new Image(currentDeck.get(randomIndex).getImgPath());  // the image of the random card
+        ImageView tstCrd2 = new ImageView(testCard2);     
+        tstCrd2.setBlendMode(BlendMode.SRC_ATOP);
+        tstCrd2.setScaleX(1);    // how big horizontally
+        tstCrd2.setScaleY(1);    // how big vertically
+        tstCrd2.setTranslateX(x);    // move into x position
+        tstCrd2.setTranslateY(y);    // move into y position
+        tstCrd2.setEffect(dropShadow);   // uses the dropshadow effect
+                root.getChildren().add(tstCrd2); // adding the card to the root
+
+            }
+        });
         
         // above is for testing, to be deleted
        
