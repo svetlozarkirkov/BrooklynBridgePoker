@@ -95,8 +95,17 @@ public class BrooklynBridgePoker extends Application {
         exitGame.setEffect(dropShadow);
         exitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {     // exits the program brutally :D
-                System.exit(0);
+            public void handle(ActionEvent event) {     // exits the program brutally :D //zy: no more :D
+            	int option = 0;
+				ChooseStage chooseStage = new ChooseStage(new String[] {"Yes", "No"}, 
+						"End of Brooklyn Bridge Poker?", "Close Brooklyn Bridge Poker now?", 
+						350, 100);
+				chooseStage.showAndWait();
+				option = chooseStage.getOption();
+				
+				if (option == 1) {
+					System.exit(-1);
+				}
             }
         });
         
@@ -108,7 +117,7 @@ public class BrooklynBridgePoker extends Application {
         bckg.setEffect(mb);     // using the motion blur
  
         StackPane root = new StackPane();
-        root.getChildren().add(bckg);   // adding the buttons and background to the root 
+        root.getChildren().add(bckg);   // adding the buttons and background to the root
         root.getChildren().add(newGame);
         root.getChildren().add(options);
         root.getChildren().add(exitGame);
