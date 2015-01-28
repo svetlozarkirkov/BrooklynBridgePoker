@@ -11,3 +11,4 @@ OPTIONS MENU
           #cheater - face up cards  
 
 TODO: https://trello.com/b/BOqbB6Wm
+UI representation http://i.imgur.com/DXSeRiN.jpg
