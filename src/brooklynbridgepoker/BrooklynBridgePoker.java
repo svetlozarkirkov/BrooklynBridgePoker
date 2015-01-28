@@ -28,11 +28,11 @@ import javafx.util.Duration;
 
 public class BrooklynBridgePoker extends Application {
     
-    public static ArrayList<PlayCard> defaultDeck() {
+    public static ArrayList<PlayCard> defaultDeck() {   // this is the default deck with all cards with type PlayCard
 		String[] faces = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
 		char[] suits = {'C','D','H','S'};
 		int[] ranks = {1,2,3,4,5,6,7,8,9,10,11,12,13};
-		ArrayList<PlayCard> deck = new ArrayList<PlayCard>();
+		ArrayList<PlayCard> deck = new ArrayList<PlayCard>();   // the list to hold the cards
 		for (int i = 0; i < faces.length;i++){
 			for (int j = 0; j < suits.length; j++){
 				PlayCard card = new PlayCard();
@@ -44,36 +44,38 @@ public class BrooklynBridgePoker extends Application {
 			}
 		}
 		for (int x = 0; x < 100; x++){
-			Collections.shuffle(deck);
+			Collections.shuffle(deck);  // shuffling the deck 100 times :D
 		}
 		return deck;
 	}
     
+    
+    
     @Override
     public void start(Stage primaryStage) throws InterruptedException {
         
-        DropShadow dropShadow = new DropShadow();
+        DropShadow dropShadow = new DropShadow();   // dropshadow that is below the cards
         dropShadow.setOffsetX(9);
         dropShadow.setOffsetY(9);
         dropShadow.setColor(Color.rgb(50, 50, 50, 0.7));
         
-        MotionBlur mb = new MotionBlur();
+        MotionBlur mb = new MotionBlur();   // motion blur for the background image
         mb.setRadius(25.0f);
         mb.setAngle(45.0f);
         
-        Button newGame = new Button();
+        Button newGame = new Button();  // button for New game
         newGame.setText("New Game");
         newGame.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
         newGame.setEffect(dropShadow);
         newGame.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) {     // what new game button does - right now nothing :D
 
             }
         });
         
-        Button options = new Button();
+        Button options = new Button();  // button options
         options.setText("Options");
         options.setTranslateY(50);
         options.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
@@ -81,60 +83,62 @@ public class BrooklynBridgePoker extends Application {
         options.setOnAction(new EventHandler<ActionEvent>() {
             
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) { // what options does - right now nothing
                 
             }
         });
         
-        Button exitGame = new Button();
+        Button exitGame = new Button();     //exit game button
         exitGame.setText("Exit");
         exitGame.setStyle("-fx-font: 20 arial; -fx-base: #b6e7c9;");
         exitGame.setTranslateY(100);
         exitGame.setEffect(dropShadow);
         exitGame.setOnAction(new EventHandler<ActionEvent>() {
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(ActionEvent event) {     // exits the program brutally :D
                 System.exit(0);
             }
         });
         
-        Image background = new Image("/brooklynbridgepoker/images/mainmenubackground.jpg");
+        Image background = new Image("/brooklynbridgepoker/images/mainmenubackground.jpg");     // main menu background
         ImageView bckg = new ImageView(background);
-        bckg.setScaleX(0.45);
-        bckg.setScaleY(0.45);
-        bckg.setOpacity(80);
-        bckg.setEffect(mb);
+        bckg.setScaleX(0.45);   // smaller horizontally
+        bckg.setScaleY(0.45);   // smaller vertically
+        bckg.setOpacity(80);    // 
+        bckg.setEffect(mb);     // using the motion blur
  
         StackPane root = new StackPane();
-        root.getChildren().add(bckg);
+        root.getChildren().add(bckg);   // adding the buttons and background to the root 
         root.getChildren().add(newGame);
         root.getChildren().add(options);
         root.getChildren().add(exitGame);
         
-        ArrayList<PlayCard> currentDeck = defaultDeck();
-        Random rand = new Random();
-        int randomIndex = rand.nextInt(currentDeck.size());
-        int x = -270;
+        // below is for testing, will be deleted
+        
+        ArrayList<PlayCard> currentDeck = defaultDeck();    // creating new deck from the default one
+        Random rand = new Random();     // random
+        int randomIndex = rand.nextInt(currentDeck.size()); // random index from the current deck size
+        int x = -270;   // positions of x and y of the first card
         int y = -170;
         
         for (int i = 0; i < 5; i++){
-            Image testCard = new Image(currentDeck.get(randomIndex).getImgPath());
-            ImageView tstCrd = new ImageView(testCard);
+            Image testCard = new Image(currentDeck.get(randomIndex).getImgPath());  // the image of the random card
+            ImageView tstCrd = new ImageView(testCard);     
             tstCrd.setBlendMode(BlendMode.SRC_ATOP);
-            tstCrd.setScaleX(1);
-            tstCrd.setScaleY(1);
-            tstCrd.setTranslateX(x);
-            tstCrd.setTranslateY(y);
-            tstCrd.setEffect(dropShadow);
+            tstCrd.setScaleX(1);    // how big horizontally
+            tstCrd.setScaleY(1);    // how big vertically
+            tstCrd.setTranslateX(x);    // move into x position
+            tstCrd.setTranslateY(y);    // move into y position
+            tstCrd.setEffect(dropShadow);   // uses the dropshadow effect
 
-            currentDeck.remove(randomIndex);
-            randomIndex = rand.nextInt(currentDeck.size());
+            currentDeck.remove(randomIndex);    // removes the card from the current deck
+            randomIndex = rand.nextInt(currentDeck.size()); // new random index from the cards left
             
-            x+=100;
+            x+=100; // new position to the right of the old card
             
-            root.getChildren().add(tstCrd);
+            root.getChildren().add(tstCrd); // adding the card to the root
             
-            Path path = new Path();
+            Path path = new Path();     // animation stuff :D
             path.getElements().add(new MoveTo(-800,-150));
             path.getElements().add(new CubicCurveTo(x-100, y, x-85, y, x, y));
             
@@ -147,46 +151,15 @@ public class BrooklynBridgePoker extends Application {
             pathTransition.setAutoReverse(false);
             pathTransition.play();
         }
-        x = -270;
-        y = -50;
-        
-        for (int i = 0; i < 5; i++){
-            Image testCard = new Image(currentDeck.get(randomIndex).getImgPath());
-            ImageView tstCrd = new ImageView(testCard);
-            tstCrd.setBlendMode(BlendMode.SRC_ATOP);
-            tstCrd.setScaleX(1);
-            tstCrd.setScaleY(1);
-            tstCrd.setTranslateX(x);
-            tstCrd.setTranslateY(y);
-            tstCrd.setEffect(dropShadow);
-
-            currentDeck.remove(randomIndex);
-            randomIndex = rand.nextInt(currentDeck.size());
-            
-            x+=100;
-            
-            root.getChildren().add(tstCrd);
-            
-            Path path = new Path();
-            path.getElements().add(new MoveTo(-800,-150));
-            path.getElements().add(new CubicCurveTo(x-100, y, x-75, y, x, y));
-            PathTransition pathTransition = new PathTransition();
-            pathTransition.setDuration(Duration.millis(1800));
-            pathTransition.setPath(path);
-            pathTransition.setNode(tstCrd);
-            pathTransition.setOrientation(PathTransition.OrientationType.NONE);
-            pathTransition.setCycleCount(1);
-            pathTransition.setAutoReverse(false);
-            pathTransition.play();
-        }
-        
+       
+        // above is for testing, to be deleted
         
         Scene scene = new Scene(root, 840, 580);
         
-        primaryStage.setTitle("Brooklyn Bridge Poker");
+        primaryStage.setTitle("Brooklyn Bridge Poker"); // title of the window
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UTILITY);
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(false);   // the window cannot be resized
         primaryStage.show();
     }
 
