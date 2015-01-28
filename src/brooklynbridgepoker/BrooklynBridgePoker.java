@@ -150,9 +150,9 @@ public class BrooklynBridgePoker extends Application {
             Path path = new Path();     // animation stuff :D
             path.getElements().add(new MoveTo(-800,-150));
             path.getElements().add(new CubicCurveTo(x-100, y, x-85, y, x, y));
-            
+            path.getElements().add(new CubicCurveTo(x,y+30,x,y+50,x,y));
             PathTransition pathTransition = new PathTransition();
-            pathTransition.setDuration(Duration.millis(1800));
+            pathTransition.setDuration(Duration.millis(2000));
             pathTransition.setPath(path);
             pathTransition.setNode(tstCrd);
             pathTransition.setOrientation(PathTransition.OrientationType.NONE);
