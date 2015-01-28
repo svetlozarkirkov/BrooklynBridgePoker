@@ -5,11 +5,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 import javafx.animation.PathTransition;
-import javafx.animation.Timeline;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.BlendMode;
@@ -22,6 +21,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.CubicCurveTo;
 import javafx.scene.shape.MoveTo;
 import javafx.scene.shape.Path;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Duration;
@@ -111,8 +111,8 @@ public class BrooklynBridgePoker extends Application {
         
         Image background = new Image("/brooklynbridgepoker/images/mainmenubackground.jpg");     // main menu background
         ImageView bckg = new ImageView(background);
-        bckg.setScaleX(0.45);   // smaller horizontally
-        bckg.setScaleY(0.45);   // smaller vertically
+        bckg.setScaleX(0.7);   // smaller horizontally
+        bckg.setScaleY(0.7);   // smaller vertically
         bckg.setOpacity(80);    // 
         bckg.setEffect(mb);     // using the motion blur
  
@@ -163,18 +163,27 @@ public class BrooklynBridgePoker extends Application {
        
         // above is for testing, to be deleted
         
-        Scene scene = new Scene(root, 840, 580);
+        
+        Screen screen = Screen.getPrimary();        // starting with maximized window
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        primaryStage.setX(bounds.getMinX());
+        primaryStage.setY(bounds.getMinY());
+        primaryStage.setWidth(bounds.getWidth());
+        primaryStage.setHeight(bounds.getHeight());
+        primaryStage.setFullScreen(true);
+        
         
         primaryStage.setTitle("Brooklyn Bridge Poker"); // title of the window
+                 Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
         primaryStage.setScene(scene);
         primaryStage.initStyle(StageStyle.UTILITY);
         primaryStage.setResizable(false);   // the window cannot be resized
         primaryStage.show();
+        
+        
     }
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         launch(args);
     }
