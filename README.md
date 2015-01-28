@@ -12,4 +12,5 @@ OPTIONS MENU
 
 TODO: https://trello.com/b/BOqbB6Wm  
 UI representation http://i.imgur.com/DXSeRiN.jpg  
+Console representation https://github.com/svetlozarkirkov/PokerGame  
 Similar project http://code.openhub.net/project?pid=_MTC9lrpGA4&prevcid=1&did=texasholdem%2Fsrc%2Fmain%2Fjava%2Forg%2Fozsoft%2Ftexasholdem&cid=A3rags1HhCM&fp=303404&projSelected=true  
