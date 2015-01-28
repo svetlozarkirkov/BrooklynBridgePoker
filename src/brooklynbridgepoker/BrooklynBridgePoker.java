@@ -40,6 +40,7 @@ public class BrooklynBridgePoker extends Application {
 				card.setSuit(suits[j]);
 				card.setFace(faces[i]);
                                 card.setImgPath(faces[i]+suits[j]);
+                                card.setFlippedCard();
 				deck.add(card);
 			}
 		}

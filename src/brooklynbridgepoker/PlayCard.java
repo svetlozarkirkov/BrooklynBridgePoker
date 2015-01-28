@@ -6,7 +6,8 @@ public class PlayCard {
 	private int rank;   // the card's rank (if the face is "2" the rank is 1, "A" - rank 13)
 	private String face;    //the card's face (example: "J")
 	private char suit;  // the card's suit("D" for diamond, etc...)
-	private String imgPath; // the path to the card image in /images
+	private String imgPath; // the path to the card face in /images
+        private String imgPathFlipped; // path to the image of a card back in /images
         
 	public PlayCard(){  //default constructor
 		
@@ -36,4 +37,8 @@ public class PlayCard {
 	public void setSuit(char suit){ //sets the suit of the card
 		this.suit = suit;
 	}
+        
+        public void setFlippedCard (){
+                this.imgPath="/brooklynbridgepoker/images/cards/b2fv.png";
+        }
 }
