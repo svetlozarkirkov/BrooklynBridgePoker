@@ -172,20 +172,8 @@ public class BrooklynBridgePoker extends Application {
             
             @Override
             public void handle(ActionEvent event) {     // what new game button does - right now nothing :D
-                for (int i = 0; i < currentDeck.size();i++){
-                    currentDeck.get(i).flipCard();
-                    
-                }
-                Image testCard2 = new Image(currentDeck.get(randomIndex).getImgPath());  // the image of the random card
-        ImageView tstCrd2 = new ImageView(testCard2);     
-        tstCrd2.setBlendMode(BlendMode.SRC_ATOP);
-        tstCrd2.setScaleX(1);    // how big horizontally
-        tstCrd2.setScaleY(1);    // how big vertically
-        tstCrd2.setTranslateX(x);    // move into x position
-        tstCrd2.setTranslateY(y);    // move into y position
-        tstCrd2.setEffect(dropShadow);   // uses the dropshadow effect
-                root.getChildren().add(tstCrd2); // adding the card to the root
-
+                currentDeck.get(randomIndex).flipCard();
+                tstCrd.setImage(new Image(currentDeck.get(randomIndex).getImgPath()));
             }
         });
         
