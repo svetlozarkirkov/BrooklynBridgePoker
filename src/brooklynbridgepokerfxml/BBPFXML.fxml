@@ -7,24 +7,29 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="940.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="brooklynbridgepokerfxml.BBPFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="brooklynbridgepokerfxml.BBPFXMLController">
     <children>
-        <Button fx:id="button" layoutX="107.0" layoutY="482.0" onAction="#handleButtonAction" prefHeight="43.0" prefWidth="132.0" text="START GAME">
+        <Button fx:id="button" layoutX="87.0" layoutY="548.0" onAction="#handleButtonAction" prefHeight="43.0" prefWidth="132.0" text="START GAME">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="16.0" />
          </font></Button>
-      <ChoiceBox id="difficultybtn" layoutX="456.0" layoutY="491.0" prefWidth="150.0" />
-      <ChoiceBox id="cpuplayersbtn" layoutX="637.0" layoutY="491.0" prefWidth="150.0" />
-      <TextField id="nameSelectionBtn" layoutX="281.0" layoutY="491.0" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" promptText="Enter your name" />
-      <Label id="difficultyBtn" layoutX="457.0" layoutY="465.0" prefHeight="17.0" prefWidth="149.0" text="Difficulty select:">
+      <ChoiceBox id="difficultybtn" layoutX="437.0" layoutY="557.0" prefWidth="150.0" />
+      <ChoiceBox id="cpuplayersbtn" layoutX="616.0" layoutY="557.0" prefWidth="150.0" />
+      <TextField id="nameSelectionBtn" layoutX="256.0" layoutY="557.0" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" promptText="Enter your name" />
+      <Label id="difficultyBtn" layoutX="438.0" layoutY="531.0" prefHeight="17.0" prefWidth="149.0" text="Difficulty select:">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="11.0" />
          </font>
       </Label>
-      <Label id="cpuPlayersCountBtn" layoutX="637.0" layoutY="465.0" prefHeight="17.0" prefWidth="149.0" text="Number of CPU players:">
+      <Label id="cpuPlayersCountBtn" layoutX="617.0" layoutY="531.0" prefHeight="17.0" prefWidth="149.0" text="Number of CPU players:">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="11.0" />
          </font>
       </Label>
+      <Button layoutX="807.0" layoutY="548.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="139.0" text="Exit game">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="15.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
