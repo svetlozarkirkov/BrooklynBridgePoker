@@ -1,7 +1,7 @@
 
-package brooklynbridgepoker;
+package brooklynbridgepokerfxml;
 
 
 public class Board {
-     
+    
 }

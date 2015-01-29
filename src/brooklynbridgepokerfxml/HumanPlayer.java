@@ -1,5 +1,5 @@
 
-package brooklynbridgepoker;
+package brooklynbridgepokerfxml;
 
 import java.util.ArrayList;
 import java.util.Random;

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,29 +8,52 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="640.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="brooklynbridgepokerfxml.BBPFXMLController">
+<AnchorPane id="AnchorPane" prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="brooklynbridgepokerfxml.BBPFXMLController">
     <children>
-        <Button fx:id="button" layoutX="87.0" layoutY="548.0" onAction="#handleButtonAction" prefHeight="43.0" prefWidth="132.0" text="START GAME">
+        <Button id="startGameBtn" fx:id="button" layoutX="136.0" layoutY="634.0" onAction="#handleStartBtnAction" prefHeight="43.0" prefWidth="132.0" text="START GAME">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="16.0" />
-         </font></Button>
-      <ChoiceBox id="difficultybtn" layoutX="437.0" layoutY="557.0" prefWidth="150.0" />
-      <ChoiceBox id="cpuplayersbtn" layoutX="616.0" layoutY="557.0" prefWidth="150.0" />
-      <TextField id="nameSelectionBtn" layoutX="256.0" layoutY="557.0" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" promptText="Enter your name" />
-      <Label id="difficultyBtn" layoutX="438.0" layoutY="531.0" prefHeight="17.0" prefWidth="149.0" text="Difficulty select:">
+         </font>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect></Button>
+      <ChoiceBox id="diff" layoutX="599.0" layoutY="643.0" prefWidth="150.0">
+         <effect>
+            <Blend mode="ADD">
+               <topInput>
+                  <DropShadow blurType="ONE_PASS_BOX" />
+               </topInput>
+            </Blend>
+         </effect></ChoiceBox>
+      <ChoiceBox id="cpuplayersbtn" layoutX="807.0" layoutY="643.0" prefWidth="150.0">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX">
+               <input>
+                  <Blend mode="ADD" />
+               </input>
+            </DropShadow>
+         </effect></ChoiceBox>
+      <TextField id="nameSelectionBtn" layoutX="383.0" layoutY="643.0" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" promptText="Enter your name">
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect></TextField>
+      <Label id="diff" layoutX="611.0" layoutY="617.0" prefHeight="17.0" prefWidth="149.0" text="Difficulty select:">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="11.0" />
          </font>
       </Label>
-      <Label id="cpuPlayersCountBtn" layoutX="617.0" layoutY="531.0" prefHeight="17.0" prefWidth="149.0" text="Number of CPU players:">
+      <Label id="cpuPlayersCountBtn" layoutX="808.0" layoutY="617.0" prefHeight="17.0" prefWidth="149.0" text="Number of CPU players:">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="11.0" />
          </font>
       </Label>
-      <Button layoutX="807.0" layoutY="548.0" mnemonicParsing="false" prefHeight="43.0" prefWidth="139.0" text="Exit game">
+      <Button id="exitGameBtn" layoutX="1073.0" layoutY="634.0" mnemonicParsing="false" onAction="#handleExitBtnAction" prefHeight="43.0" prefWidth="139.0" text="Exit game">
          <font>
             <Font name="DejaVu Sans Mono Bold" size="15.0" />
          </font>
+         <effect>
+            <DropShadow blurType="ONE_PASS_BOX" />
+         </effect>
       </Button>
     </children>
 </AnchorPane>

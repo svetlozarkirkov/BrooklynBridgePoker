@@ -1,5 +1,5 @@
 
-package brooklynbridgepoker;
+package brooklynbridgepokerfxml;
 
 
 public class PlayCard {
