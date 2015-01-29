@@ -3,14 +3,14 @@ package brooklynbridgepoker;
 import java.util.ArrayList;
 import java.util.Random;
 
-import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
+
 
 
 
 public class PokerHands {
 	public static void main(String[] args) {
 		
-		int hands = 4;
+		;
 		char[] symbols = {'\u2663', '\u2666', '\u2665', '\u2660'};
 		String[] names = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 		ArrayList<String> cards = new ArrayList<String>();
@@ -42,12 +42,12 @@ public class PokerHands {
 			randomNumber = random.nextInt(cards.size() +0);
 		}	
 		for (int j = 0; j < 5; j++) {
-			player2Hand.add(j, cards.get(randomNumber));
+			player3Hand.add(j, cards.get(randomNumber));
 			cards.remove(randomNumber);
 			randomNumber = random.nextInt(cards.size() +0);
 		}	
 		for (int j = 0; j < 5; j++) {
-			player3Hand.add(j, cards.get(randomNumber));
+			player4Hand.add(j, cards.get(randomNumber));
 			cards.remove(randomNumber);
 			randomNumber = random.nextInt(cards.size() +0);
 		}
