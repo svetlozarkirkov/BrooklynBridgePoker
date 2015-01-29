@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="580.0" prefWidth="940.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="brooklynbridgepokerfxml.BBPFXMLController">
+    <children>
+        <Button fx:id="button" layoutX="107.0" layoutY="482.0" onAction="#handleButtonAction" prefHeight="43.0" prefWidth="132.0" text="START GAME">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="16.0" />
+         </font></Button>
+      <ChoiceBox id="difficultybtn" layoutX="456.0" layoutY="491.0" prefWidth="150.0" />
+      <ChoiceBox id="cpuplayersbtn" layoutX="637.0" layoutY="491.0" prefWidth="150.0" />
+      <TextField id="nameSelectionBtn" layoutX="281.0" layoutY="491.0" onAction="#handleButtonAction" onKeyPressed="#handleButtonAction" promptText="Enter your name" />
+      <Label id="difficultyBtn" layoutX="457.0" layoutY="465.0" prefHeight="17.0" prefWidth="149.0" text="Difficulty select:">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="11.0" />
+         </font>
+      </Label>
+      <Label id="cpuPlayersCountBtn" layoutX="637.0" layoutY="465.0" prefHeight="17.0" prefWidth="149.0" text="Number of CPU players:">
+         <font>
+            <Font name="DejaVu Sans Mono Bold" size="11.0" />
+         </font>
+      </Label>
+    </children>
+</AnchorPane>
