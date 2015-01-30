@@ -9,6 +9,7 @@ public class PlayCard {
 	private String imgPath; // the path to the card face in /images
         private final String imgPathFlipped = "/brooklynbridgepoker/resources/images/cards/b2fv.png"; // path to the image of a card back in /images
         private String image;   // current image used
+        private int cardState = 0;  // 0 = the card is not shown, 1 = the card is shown
         
 	public PlayCard(){  //default constructor
 		
@@ -41,8 +42,14 @@ public class PlayCard {
                 
         public void flipCard (){    // hides the card
                 this.image=imgPathFlipped;
+                this.cardState=0;
         }
         public void unflipCard(){   // unhides the card
             this.image=imgPath;
+            this.cardState=1;
+        }
+        
+        public int getCardState(){  // gets whether the card is shown or flipped
+            return this.cardState;
         }
 }

@@ -22,13 +22,13 @@ public class HumanPlayer {
 	}
     
     public int getHumanPlayerCash(){    //gets the player cash
-	return cash;
+	return this.cash;
 	}
     public String getHumanPlayerName(){ //gets the player name
-        return name;
+        return this.name;
     }
     public int getHumanPlayerBet(){ //gets the bet the player made
-        return bet;
+        return this.bet;
     }
     
     public int getHumanPlayerHandsWon(){
@@ -40,8 +40,16 @@ public class HumanPlayer {
     }
     
     public ArrayList<PlayCard> getHumanPlayerCurrentCards(){    // gets current player hand in arraylist
-        return currentCards;
+        return this.currentCards;
     }
+    
+    public void setHumanPlayerCards(ArrayList<PlayCard> humanCards){    // gives cards to the human player
+        for(PlayCard humanCard: humanCards){
+            humanCard.unflipCard();             // shows the cards
+        }
+        this.currentCards=humanCards;
+    }
+    
     public void setHumanPlayerName(String name){    // sets the player name
         this.name=name;
     }
@@ -68,6 +76,12 @@ public class HumanPlayer {
             int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck
             humanPlayerCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the player hand
             currentDeck.remove(randomIndex);    // removes the card from the current deck
+        }
+        for (PlayCard humanCard: this.currentCards){    // unflips all player cards again (just to be sure)
+            humanCard.unflipCard();
+        }
+        for(PlayCard card: cardsRemoved){   // hides the removed cards if they were shown
+            card.flipCard();
         }
         currentDeck.addAll(cardsRemoved); // adds removed cards back into the current deck ( maybe not needed  ??? )
     }

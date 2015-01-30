@@ -49,6 +49,7 @@ public class Board {
 				card.setSuit(suits[j]);
 				card.setFace(faces[i]);
                                 card.setImage(faces[i]+suits[j]);
+                                card.flipCard(); // hides the card initially
                                 deck.add(card);
 			}
 		}
@@ -57,7 +58,7 @@ public class Board {
 		}
 		return defaultDeck;
 	}
-     public static ArrayList<String> cpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
+     public static void setCpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
         ArrayList<String> names = new ArrayList();
         BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
         String line = reader.readLine();
@@ -65,7 +66,7 @@ public class Board {
           names.add(line);
           line = reader.readLine();
         }
-        return cpuNamesList;
+        cpuNamesList=names;
     }
      
      public static void newRound(){
@@ -79,9 +80,10 @@ public class Board {
          human.clearHumanCards();   // clearing the human player cards
          human.clearHumanBet(); // clears the human player bet
          currentPot.clearPot(); // clears the pot
+         addRound();
      }
      
-     public void addRound(){    // adds a round to the count
+     public static void addRound(){    // adds a round to the count
          roundsCount+=1;
      }
 }

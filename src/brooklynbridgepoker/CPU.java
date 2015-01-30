@@ -15,6 +15,8 @@ public class CPU {
     
     private int cpuCashWon; // cash won by the computer player
     
+    private int difficulty; // difficulty for the cpu (1 - normal, 2 - cheater)
+    
     private ArrayList<PlayCard> currentCards;   // holds the cpu hand
     
     private double cardsXPos;
@@ -41,6 +43,10 @@ public class CPU {
     
     public int getHandsWon(){   // gets how many times the cpu won the round
         return this.cpuHandsWon;
+    }
+    
+    public int getCPUDifficulty(){
+        return this.difficulty;
     }
     
     public ArrayList<PlayCard> getCPUCurrentCards(){    // gets current cpu hand in arraylist
@@ -73,6 +79,19 @@ public class CPU {
         this.cpuCashWon+=winningCashCPU;
     }
     
+    public void setCPUDifficulty(int difficultyCPU){
+        this.difficulty=difficultyCPU;
+    }
+    
+    public void setCPUCurrentCards(ArrayList<PlayCard> cardsCPU){    // sets current cpu cards
+        this.currentCards=cardsCPU;
+        if (this.difficulty==2){    // checks if "cheater mode" is active
+            for (int i = 0; i < 4; i++){    
+                this.currentCards.get(i).unflipCard();  // shows four of cpu cards
+            }
+        }
+    }
+    
     public void setCardsXPos(double x){ // sets the X position of the cards
         this.cardsXPos=x;
     }
@@ -82,15 +101,28 @@ public class CPU {
     }
     
     // Method when the cpu changes some of his cards with new ones
-    public void changeCPUCurrentCards(ArrayList<PlayCard> currentCPUCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
+    public void changeCPUCurrentCards(ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
+        ArrayList<PlayCard> currentCPUCards = this.currentCards;
         ArrayList<PlayCard> cardsRemoved = new ArrayList(); // list to store removed cards
         for (int i = 0; i < indexes.size();i++){
+            int oldCardState = currentCPUCards.get(indexes.indexOf(i)).getCardState();
             cardsRemoved.add(currentCPUCards.get(indexes.indexOf(i))); // stores the removed card into a list
             currentCPUCards.remove(indexes.indexOf(i));    //removes the card from the cpu hand at the specified index
             Random randomCard = new Random();   //random
-            int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck
-            currentCPUCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the cpu hand
+            int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck  
+            PlayCard newCard = currentDeck.get(randomIndex);
+            if (oldCardState == 0){
+                newCard.flipCard();
+            }
+            else{
+                newCard.unflipCard();
+            }
+            currentCPUCards.add(indexes.indexOf(i), newCard); //adds the new card to the cpu hand
             currentDeck.remove(randomIndex); // removes the card from the current deck
+        }
+        
+        for(PlayCard card: cardsRemoved){   // hides the cards if they were shown
+            card.flipCard();
         }
         currentDeck.addAll(cardsRemoved);   // adds removed cards back into the current deck
     }
