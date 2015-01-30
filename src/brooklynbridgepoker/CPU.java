@@ -11,6 +11,10 @@ public class CPU {
     
     private int bet;    // holds the cpu bet
     
+    private int cpuHandsWon;    // hands won by the computer player
+    
+    private int cpuCashWon; // cash won by the computer player
+    
     private ArrayList<PlayCard> currentCards;   // holds the cpu hand
     
     private double cardsXPos;
@@ -29,6 +33,14 @@ public class CPU {
     }
     public int getCPUBet(){ //gets the bet the cpu made
         return this.bet;
+    }
+    
+    public int getCPUCashWon(){    //gets the amount of cash won during the game
+        return this.cpuCashWon;
+    }
+    
+    public int getHandsWon(){   // gets how many times the cpu won the round
+        return this.cpuHandsWon;
     }
     
     public ArrayList<PlayCard> getCPUCurrentCards(){    // gets current cpu hand in arraylist
@@ -51,6 +63,14 @@ public class CPU {
     }
     public void setCPUBet(int bet){ //sets the current bet the cpu made
         this.bet+=bet;
+    }
+    
+    public void cpuWon(){ // adds a winning hand to the count
+        this.cpuHandsWon+=1;
+    }
+    
+    public void cpuWonCash(int winningCashCPU){
+        this.cpuCashWon+=winningCashCPU;
     }
     
     public void setCardsXPos(double x){ // sets the X position of the cards

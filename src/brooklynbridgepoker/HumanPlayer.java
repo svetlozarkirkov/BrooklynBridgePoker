@@ -11,6 +11,10 @@ public class HumanPlayer {
     
     private int bet;    // holds the player bet
     
+    private int playerHandsWon;
+    
+    private int playerCashWon;
+    
     private ArrayList<PlayCard> currentCards;   // holds the player hand
     
     public HumanPlayer(){   // default constructor
@@ -26,6 +30,15 @@ public class HumanPlayer {
     public int getHumanPlayerBet(){ //gets the bet the player made
         return bet;
     }
+    
+    public int getHumanPlayerHandsWon(){
+        return this.playerHandsWon;
+    }
+    
+    public int getHumanPlayerCashWon(){
+        return this.playerCashWon;
+    }
+    
     public ArrayList<PlayCard> getHumanPlayerCurrentCards(){    // gets current player hand in arraylist
         return currentCards;
     }
@@ -37,6 +50,12 @@ public class HumanPlayer {
     }
     public void setHumanPlayerBet(int bet){ //sets the current bet the player made
         this.bet+=bet;
+    }
+    public void humanWon(){ // adds a winning hand for the player
+        this.playerHandsWon+=1;
+    }
+    public void humanWonCash(int humanWinningCash){ // adds the cash won into the total
+        this.playerCashWon+=humanWinningCash;
     }
     
     // Method when the player changes some of his cards with new ones
