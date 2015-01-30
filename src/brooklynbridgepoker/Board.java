@@ -14,9 +14,10 @@ public class Board {
      public static ArrayList<PlayCard> defaultDeck; // the default deck with 52 cards
      public static ArrayList<String> cpuNamesList;  // cpu names generated for this session
      public static ArrayList<PlayCard> currentDeck; // deck used each round
-     public static ArrayList<CPU> computers;
-     public static HumanPlayer human;
+     public static ArrayList<CPU> computers;    // stores the computer players
+     public static HumanPlayer human;   // stores the human player
      public static Pot currentPot;  // current pot for the round
+     public static int roundsCount; // tracks how many rounds were played
      
      public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
          
@@ -78,5 +79,9 @@ public class Board {
          human.clearHumanCards();   // clearing the human player cards
          human.clearHumanBet(); // clears the human player bet
          currentPot.clearPot(); // clears the pot
+     }
+     
+     public void addRound(){    // adds a round to the count
+         roundsCount+=1;
      }
 }
