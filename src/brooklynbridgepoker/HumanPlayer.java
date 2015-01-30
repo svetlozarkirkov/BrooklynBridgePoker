@@ -41,12 +41,16 @@ public class HumanPlayer {
     
     // Method when the player changes some of his cards with new ones
     public void changeHumanPlayerCards(ArrayList<PlayCard> humanPlayerCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
+        ArrayList<PlayCard> cardsRemoved = new ArrayList(); // list to store removed cards
         for (int i = 0; i < indexes.size();i++){
+            cardsRemoved.add(humanPlayerCards.get(indexes.indexOf(i))); // stores the removed card into a list
             humanPlayerCards.remove(indexes.indexOf(i));    //removes the card from the player hand
             Random randomCard = new Random();   //random
             int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck
             humanPlayerCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the player hand
+            currentDeck.remove(randomIndex);    // removes the card from the current deck
         }
+        currentDeck.addAll(cardsRemoved); // adds removed cards back into the current deck ( maybe not needed  ??? )
     }
     
     public void clearHumanCards(){  // clears the human player cards before new round or when folding

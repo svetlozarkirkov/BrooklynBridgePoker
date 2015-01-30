@@ -63,12 +63,16 @@ public class CPU {
     
     // Method when the cpu changes some of his cards with new ones
     public void changeCPUCurrentCards(ArrayList<PlayCard> currentCPUCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
+        ArrayList<PlayCard> cardsRemoved = new ArrayList(); // list to store removed cards
         for (int i = 0; i < indexes.size();i++){
+            cardsRemoved.add(currentCPUCards.get(indexes.indexOf(i))); // stores the removed card into a list
             currentCPUCards.remove(indexes.indexOf(i));    //removes the card from the cpu hand at the specified index
             Random randomCard = new Random();   //random
             int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck
             currentCPUCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the cpu hand
+            currentDeck.remove(randomIndex); // removes the card from the current deck
         }
+        currentDeck.addAll(cardsRemoved);   // adds removed cards back into the current deck
     }
     
     public void clearCards(){   // clears the cpu cards before a new round or when folding
