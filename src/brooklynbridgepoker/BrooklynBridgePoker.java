@@ -6,7 +6,6 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collections;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -31,16 +30,7 @@ public class BrooklynBridgePoker extends Application {
 
     
     
-    public static ArrayList<String> cpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
-        ArrayList<String> names = new ArrayList<String>();
-        BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
-        String line = reader.readLine();
-        while (line != null) {
-          names.add(line);
-          line = reader.readLine();
-        }
-        return names;
-    }
+    
     
     
     @Override

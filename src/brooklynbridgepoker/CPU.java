@@ -1,6 +1,10 @@
 
 package brooklynbridgepoker;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -70,4 +74,9 @@ public class CPU {
             currentCPUCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the cpu hand
         }
     }
+    
+    public void clearCards(){
+        this.currentCards=null;
+    }
+    
 }

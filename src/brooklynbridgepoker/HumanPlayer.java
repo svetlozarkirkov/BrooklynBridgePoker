@@ -48,4 +48,8 @@ public class HumanPlayer {
             humanPlayerCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the player hand
         }
     }
+    
+    public void clearHumanCards(){
+        this.currentCards=null;
+    }
 }

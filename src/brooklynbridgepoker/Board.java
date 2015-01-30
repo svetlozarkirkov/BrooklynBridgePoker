@@ -1,13 +1,21 @@
 
 package brooklynbridgepoker;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
 
 public class Board {
      
-     private static ArrayList<PlayCard> defaultDeck;
+     public static ArrayList<PlayCard> defaultDeck; // the default deck with 52 cards
+     public static ArrayList<String> cpuNamesList;  // cpu names generated for this session
+     public static ArrayList<PlayCard> currentDeck; // deck used each round
+     public static ArrayList<CPU> computers;
+     public static HumanPlayer human;
      
      public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
          
@@ -47,4 +55,23 @@ public class Board {
 		}
 		return defaultDeck;
 	}
+     public static ArrayList<String> cpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
+        ArrayList<String> names = new ArrayList();
+        BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
+        String line = reader.readLine();
+        while (line != null) {
+          names.add(line);
+          line = reader.readLine();
+        }
+        return cpuNamesList;
+    }
+     
+     public static void newRound(){
+         currentDeck=defaultDeck;
+         for (int i = 0; i < computers.size(); i++){
+             computers.get(i).setCPUBet(0);
+             computers.get(i).clearCards();
+             human.clearHumanCards();
+         }
+     }
 }
