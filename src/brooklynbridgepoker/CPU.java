@@ -1,10 +1,6 @@
 
 package brooklynbridgepoker;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -75,8 +71,12 @@ public class CPU {
         }
     }
     
-    public void clearCards(){
+    public void clearCards(){   // clears the cpu cards before a new round or when folding
         this.currentCards.clear();
+    }
+    
+    public void clearBet(){     // clears the cpu bet before a new round or when folding
+        this.bet=0;
     }
     
 }

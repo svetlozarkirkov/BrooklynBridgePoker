@@ -49,11 +49,11 @@ public class HumanPlayer {
         }
     }
     
-    public void clearHumanCards(){
+    public void clearHumanCards(){  // clears the human player cards before new round or when folding
         this.currentCards.clear();
     }
     
-    public void clearHumanBet(){
+    public void clearHumanBet(){    // clears the human player bet before new round or when folding
         this.bet=0;
     }
 }

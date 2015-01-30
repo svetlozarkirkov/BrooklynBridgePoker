@@ -72,11 +72,11 @@ public class Board {
          currentDeck=defaultDeck;   // creating new current deck from the default one
          Collections.shuffle(currentDeck); // shuffling again
          for (int i = 0; i < computers.size(); i++){    // clearing the cards and the bet for each computer
-             computers.get(i).setCPUBet(0);
+             computers.get(i).clearBet();
              computers.get(i).clearCards();
          }
          human.clearHumanCards();   // clearing the human player cards
-         human.clearHumanBet(); // clears the human plaer bet
+         human.clearHumanBet(); // clears the human player bet
          currentPot.clearPot(); // clears the pot
      }
 }
