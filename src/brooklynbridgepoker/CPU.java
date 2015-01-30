@@ -12,24 +12,37 @@ public class CPU {
     private int bet;    // holds the cpu bet
     
     private ArrayList<PlayCard> currentCards;   // holds the cpu hand
+    
+    private double cardsXPos;
+    
+    private double cardsYPos;
           
     public CPU(){   // default constructor
 		
 	}
     
     public int getCPUCash(){    //gets the cpu cash
-	return cash;
+	return this.cash;
 	}
     public String getCPUName(){ //gets the cpu name
-        return name;
+        return this.name;
     }
     public int getCPUBet(){ //gets the bet the cpu made
-        return bet;
+        return this.bet;
     }
     
     public ArrayList<PlayCard> getCPUCurrentCards(){    // gets current cpu hand in arraylist
-        return currentCards;
+        return this.currentCards;
     }
+    
+    public double getCardsXPos(){   // gets the X position of the cards
+        return this.cardsXPos;
+    }
+    
+    public double getCardsYPos(){   // gets the Y position of the cards
+        return this.cardsYPos;
+    }
+    
     public void setCPUName(String name){    // sets the cpu name
         this.name=name;
     }
@@ -38,6 +51,14 @@ public class CPU {
     }
     public void setCPUBet(int bet){ //sets the current bet the cpu made
         this.bet=bet;
+    }
+    
+    public void setCardsXPos(double x){ // sets the X position of the cards
+        this.cardsXPos=x;
+    }
+    
+    public void setCardsYPos(double y){ // sets the Y position of the cards
+        this.cardsYPos=y;
     }
     
     // Method when the cpu changes some of his cards with new ones

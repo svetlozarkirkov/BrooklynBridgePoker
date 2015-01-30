@@ -13,21 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-/**
-@author Copyright 2014 Piotr Dzwiniel
- 
-Sample of use:
- 
-int option = 0;
-String[] buttons = {"Yes", "No"};
-ChooseStage window = new ChooseStage(buttons, "Question",
-"Are you sure you want to close The Application?", 350, 100);
-window.showAndWait();
-option = window.getOption();
-if (option == 1) {
-	System.exit(-1);
-}
-*/
+
 
 public class ChooseStage extends Stage {
 
