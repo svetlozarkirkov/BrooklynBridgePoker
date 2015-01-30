@@ -35,7 +35,7 @@ public class ChooseStage extends Stage {
 		this.stageWidth = w;
 		this.stageHeight = h;
 		
-		String styleSheet = ChooseStage.class.getResource("ChooseStage.css").toExternalForm();
+		String styleSheet = ChooseStage.class.getResource("resources/ChooseStage.css").toExternalForm();
 		
 		/* layout */
 		BorderPane layout = new BorderPane();

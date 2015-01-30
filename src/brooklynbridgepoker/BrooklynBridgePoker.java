@@ -34,7 +34,7 @@ public class BrooklynBridgePoker extends Application {
         Pane root = new Pane();
         root.setPrefSize(1280, 720);
         
-        Image background = new Image("/brooklynbridgepoker/images/table.jpg");
+        Image background = new Image("/brooklynbridgepoker/resources/images/table.jpg");
         
         ImageView back = new ImageView(background);
         back.setScaleX(0.8);
