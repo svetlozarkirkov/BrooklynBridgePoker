@@ -16,6 +16,7 @@ public class Board {
      public static ArrayList<PlayCard> currentDeck; // deck used each round
      public static ArrayList<CPU> computers;
      public static HumanPlayer human;
+     public static Pot currentPot;  // current pot for the round
      
      public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
          
@@ -67,11 +68,15 @@ public class Board {
     }
      
      public static void newRound(){
-         currentDeck=defaultDeck;
-         for (int i = 0; i < computers.size(); i++){
+         currentDeck.clear();   // clearing the current deck
+         currentDeck=defaultDeck;   // creating new current deck from the default one
+         Collections.shuffle(currentDeck); // shuffling again
+         for (int i = 0; i < computers.size(); i++){    // clearing the cards and the bet for each computer
              computers.get(i).setCPUBet(0);
              computers.get(i).clearCards();
-             human.clearHumanCards();
          }
+         human.clearHumanCards();   // clearing the human player cards
+         human.clearHumanBet(); // clears the human plaer bet
+         currentPot.clearPot(); // clears the pot
      }
 }

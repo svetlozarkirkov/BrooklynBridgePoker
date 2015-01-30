@@ -51,10 +51,10 @@ public class CPU {
         this.name=name;
     }
     public void setCPUCash(int cash){   //sets the current cash of the cpu
-        this.cash=cash;
+        this.cash+=cash;
     }
     public void setCPUBet(int bet){ //sets the current bet the cpu made
-        this.bet=bet;
+        this.bet+=bet;
     }
     
     public void setCardsXPos(double x){ // sets the X position of the cards
@@ -76,7 +76,7 @@ public class CPU {
     }
     
     public void clearCards(){
-        this.currentCards=null;
+        this.currentCards.clear();
     }
     
 }

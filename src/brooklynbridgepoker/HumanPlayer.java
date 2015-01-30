@@ -33,10 +33,10 @@ public class HumanPlayer {
         this.name=name;
     }
     public void setHumanPlayerCash(int cash){   //sets the current cash of the player
-        this.cash=cash;
+        this.cash+=cash;
     }
     public void setHumanPlayerBet(int bet){ //sets the current bet the player made
-        this.bet=bet;
+        this.bet+=bet;
     }
     
     // Method when the player changes some of his cards with new ones
@@ -50,6 +50,10 @@ public class HumanPlayer {
     }
     
     public void clearHumanCards(){
-        this.currentCards=null;
+        this.currentCards.clear();
+    }
+    
+    public void clearHumanBet(){
+        this.bet=0;
     }
 }
