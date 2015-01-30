@@ -51,11 +51,28 @@ public class PokerHands {
 			cards.remove(randomNumber);
 			randomNumber = random.nextInt(cards.size() +0);
 		}
-		
+		System.out.print("Player1 cards is: ");
 		for (String card : player1Hand) {
 			System.out.printf("%s ",card);
 		}
-		
-		
+		System.out.println();
+		System.out.print("Player2 cards is: ");
+
+		for (String card1 : player2Hand) {
+			System.out.printf("%s ",card1);
+		}
+		System.out.println();
+		System.out.print("Player3 cards is: ");
+
+		for (String card2 : player3Hand) {
+			System.out.printf("%s ",card2);
+		}
+		System.out.println();
+		System.out.print("Player4 cards is: ");
+
+		for (String card3 : player4Hand) {
+			System.out.printf("%s ",card3);
+		}
+		System.out.println();
 	} 
 }
