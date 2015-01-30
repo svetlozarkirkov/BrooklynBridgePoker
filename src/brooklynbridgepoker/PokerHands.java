@@ -9,8 +9,7 @@ import java.util.Random;
 
 public class PokerHands {
 	public static void main(String[] args) {
-		
-		;
+				
 		char[] symbols = {'\u2663', '\u2666', '\u2665', '\u2660'};
 		String[] names = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
 		ArrayList<String> cards = new ArrayList<String>();
