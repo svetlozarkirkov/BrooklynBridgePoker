@@ -23,26 +23,59 @@ public class BrooklynBridgePoker extends Application {
         launch(args);
     }
 
-    
-    
-    
-    
-    
     @Override
     public void start(Stage primaryStage) {
         
         Pane root = new Pane();
         root.setPrefSize(1280, 720);
         
-        Image background = new Image("/brooklynbridgepoker/resources/images/table.jpg");
+        Image background = new Image("/brooklynbridgepoker/resources/images/mainmenubackground.jpg");
         
         ImageView back = new ImageView(background);
         back.setScaleX(0.8);
-        back.setScaleY(0.8);
+        back.setScaleY(1.3);
+        back.setTranslateX(-300);
         back.setFitHeight(720);
-        back.setFitWidth(1280);
+        //back.setFitWidth(1280);
+        
+        MenuButton newGame = new MenuButton("NEW GAME",1);
+        newGame.setTranslateX(400);
+        newGame.setTranslateY(248);
+        
+        MenuButton options = new MenuButton("OPTIONS",2);
+        options.setTranslateX(400);
+        options.setTranslateY(288);
+        
+        MenuButton exitGame = new MenuButton("EXIT GAME",3);
+        exitGame.setTranslateX(400);
+        exitGame.setTranslateY(328);
+        
+//        Board table = new Board();
+//        table.defaultDeck();
+//        table.addHumanPlayer("Sve");
+//        table.addRound();
+//        
+//        Random rnd = new Random();
+//        int randomIndex = rnd.nextInt(table.deck.size());
+//        ArrayList<PlayCard> humanCards = new ArrayList();
+//        for (int i = 0; i < 5; i++){
+//            humanCards.add(table.deck.get(randomIndex));
+//            table.deck.remove(randomIndex);
+//            randomIndex = rnd.nextInt(table.deck.size());
+//        }
+//        table.human.setHumanPlayerCards(humanCards);
+//        for (PlayCard card: table.human.getHumanPlayerCurrentCards()){
+//            System.out.print(card.getFace()+" "+card.getSuit()+" "+card.getRank()+" "+card.getCardState());
+//            System.out.println();
+//        }
+//            
+        
+        
         
         root.getChildren().addAll(back);
+        root.getChildren().addAll(newGame);
+        root.getChildren().addAll(options);
+        root.getChildren().addAll(exitGame);
         
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
@@ -50,28 +83,28 @@ public class BrooklynBridgePoker extends Application {
         primaryStage.show();
         
     }
-    
+
     private static class MenuButton extends StackPane{
         private Text text;
         
-        public MenuButton(String name){
+        public MenuButton(String name, int action){
             
             text = new Text(name);
-            text.setFont(text.getFont().font(20));
+            text.setFont(text.getFont().font(22));
             text.setFill(Color.WHITE);
             
-            Rectangle btnBack = new Rectangle(250,30);
+            Rectangle btnBack = new Rectangle(250,40);
             btnBack.setOpacity(0.6);
             btnBack.setFill(Color.BLACK);
             btnBack.setEffect(new GaussianBlur(3.5));
             
-            setAlignment(Pos.CENTER_LEFT);
-            setRotate(-0.5);
+            setAlignment(Pos.CENTER);
+            //setRotate(-0.5);
             getChildren().addAll(btnBack,text);
             
             setOnMouseEntered(event -> {
                 btnBack.setTranslateX(10);
-                text.setTranslateX(10);
+                //text.setTranslateX(10);
                 btnBack.setFill(Color.WHITE);
                 text.setFill(Color.BLACK);
             });
@@ -86,9 +119,13 @@ public class BrooklynBridgePoker extends Application {
             DropShadow dropSh = new DropShadow(50,Color.WHITE);
             dropSh.setInput(new Glow());
             
-            setOnMousePressed(event -> setEffect(dropSh));
-            setOnMouseReleased(event -> setEffect(null));
-            
+            if (action == 1){
+                //setOnMousePressed(event -> setEffect(dropSh));
+                //setOnMouseReleased(event -> setEffect(null));
+            }
+            else if (action == 3){
+                setOnMousePressed(event -> System.exit(0));
+            }
         }
     }
 }

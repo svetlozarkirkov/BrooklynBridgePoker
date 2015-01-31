@@ -7,37 +7,42 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 
 public class Board {
      
-     public static ArrayList<PlayCard> defaultDeck; // the default deck with 52 cards
-     public static ArrayList<String> cpuNamesList;  // cpu names generated for this session
-     public static ArrayList<PlayCard> currentDeck; // deck used each round
-     public static ArrayList<CPU> computers;    // stores the computer players
-     public static HumanPlayer human;   // stores the human player
-     public static Pot currentPot;  // current pot for the round
-     public static int roundsCount; // tracks how many rounds were played
+     public ArrayList<PlayCard> deck; // default deck with all 52 cards
+     public ArrayList<String> cpuNamesList;  // cpu names generated for this session
+     public ArrayList<PlayCard> currentDeck; // deck used each round
+     public ArrayList<CPU> computers;    // stores the computer players
+     public HumanPlayer human;   // stores the human player
+     public Pot currentPot;  // current pot for the round
+     public int roundsCount; // tracks how many rounds were played
      
-     public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
+     public Board(){
          
-         for (int i = 0; i < cpuPlayers.size(); i++){
-             if (i==0){
-                 cpuPlayers.get(i).setCardsXPos(0);
-                 cpuPlayers.get(i).setCardsYPos(-150);
-             }
-             else if (i == 1){
-                 cpuPlayers.get(i).setCardsXPos(-100);
-                 cpuPlayers.get(i).setCardsYPos(-100);
-             }
-             else if (i == 2){
-                 cpuPlayers.get(i).setCardsXPos(100);
-                 cpuPlayers.get(i).setCardsYPos(-100);
-             }
-         }
      }
      
-     public static ArrayList<PlayCard> defaultDeck() {   // this is the default deck with all cards with type PlayCard
+//     public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
+//         
+//         for (int i = 0; i < cpuPlayers.size(); i++){
+//             if (i==0){
+//                 cpuPlayers.get(i).setCardsXPos(0);
+//                 cpuPlayers.get(i).setCardsYPos(-150);
+//             }
+//             else if (i == 1){
+//                 cpuPlayers.get(i).setCardsXPos(-100);
+//                 cpuPlayers.get(i).setCardsYPos(-100);
+//             }
+//             else if (i == 2){
+//                 cpuPlayers.get(i).setCardsXPos(100);
+//                 cpuPlayers.get(i).setCardsYPos(-100);
+//             }
+//         }
+//     }
+     
+     public void defaultDeck() {   // this is the default deck with all cards with type PlayCard
 		String[] faces = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
 		char[] suits = {'C','D','H','S'};
 		int[] ranks = {1,2,3,4,5,6,7,8,9,10,11,12,13};
@@ -56,9 +61,11 @@ public class Board {
 		for (int x = 0; x < 100; x++){
 			Collections.shuffle(deck);  // shuffling the deck 100 times :D
 		}
-		return defaultDeck;
+		this.deck=deck;
 	}
-     public static void setCpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
+     
+     
+     public void setCpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
         ArrayList<String> names = new ArrayList();
         BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
         String line = reader.readLine();
@@ -66,24 +73,39 @@ public class Board {
           names.add(line);
           line = reader.readLine();
         }
-        cpuNamesList=names;
+        this.cpuNamesList=names;
     }
      
-     public static void newRound(){
-         currentDeck.clear();   // clearing the current deck
-         currentDeck=defaultDeck;   // creating new current deck from the default one
-         Collections.shuffle(currentDeck); // shuffling again
-         for (int i = 0; i < computers.size(); i++){    // clearing the cards and the bet for each computer
-             computers.get(i).clearBet();
-             computers.get(i).clearCards();
+     public void newRound(){
+         this.currentDeck.clear();   // clearing the current deck
+         defaultDeck();
+         this.currentDeck=deck;   // creating new current deck from the default one
+         Collections.shuffle(this.deck); // shuffling again
+         for (int i = 0; i < this.computers.size(); i++){    // clearing the cards and the bet for each computer
+             this.computers.get(i).clearBet();
+             this.computers.get(i).clearCards();
          }
-         human.clearHumanCards();   // clearing the human player cards
-         human.clearHumanBet(); // clears the human player bet
-         currentPot.clearPot(); // clears the pot
+         this.human.clearHumanCards();   // clearing the human player cards
+         this.human.clearHumanBet(); // clears the human player bet
+         this.currentPot.clearPot(); // clears the pot
          addRound();
      }
      
-     public static void addRound(){    // adds a round to the count
-         roundsCount+=1;
+     public void addRound(){    // adds a round to the count
+         roundsCount++;
+     }
+     
+     public void addHumanPlayer(String name){
+         this.human=new HumanPlayer();
+         this.human.setHumanPlayerName(name);
+     }
+     
+     public void addComputerPlayer(){
+         CPU bot = new CPU();
+         Random rnd = new Random();
+         int randomNameIndex = rnd.nextInt(this.cpuNamesList.size());
+         bot.setCPUName(this.cpuNamesList.get(randomNameIndex));
+         this.computers.add(bot);
+         this.cpuNamesList.remove(randomNameIndex);
      }
 }
