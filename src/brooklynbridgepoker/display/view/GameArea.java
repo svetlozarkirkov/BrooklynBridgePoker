@@ -41,7 +41,6 @@ public class GameArea extends JPanel implements Observer{
 			//Padding
 		gc.insets = new Insets(10, 10, 10, 10);
 		
-		
 			//Sets up the tablePanel
 		midTable = new TablePanel(table);	
 		midTable.setBackground(Color.red);

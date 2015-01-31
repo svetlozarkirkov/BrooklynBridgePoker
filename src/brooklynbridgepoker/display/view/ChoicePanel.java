@@ -31,7 +31,7 @@ public class ChoicePanel extends JPanel{
 		makeBet.setVisible(false);
 		
 		check = new JButton("Check");
-		rise = new JButton("Rise");
+		rise = new JButton("Raise");
 		fold = new JButton("Fold");
 		bet = new JButton("Bet");
 		cancel = new JButton("Cancel");

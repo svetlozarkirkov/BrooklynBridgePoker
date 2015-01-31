@@ -106,8 +106,10 @@ public class TablePanel extends JPanel{
 		ClassLoader cl = this.getClass().getClassLoader();
 
 		for(int i = 0; i < cards.size(); i++){
-			//this.cards[i].setIcon(cards.get(i).getImage());//add imageitem from card
-			this.cards[i].setIcon(new ImageIcon(cl.getResource("resources/images/"+cards.get(i).getSuit().getCode() +""+cards.get(i).getRank().getCode()+".png" )));//add imageitem from card
+			//this.cards[i].setIcon(cards.get(i).getImage());
+			//add imageitem from card
+			this.cards[i].setIcon(new ImageIcon(cl.getResource("resources/images/"+cards.get(i).getSuit().getCode() +""+cards.get(i).getRank().getCode()+".png" )));
+			//add imageitem from card
 
 			
 		}

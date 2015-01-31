@@ -8,7 +8,7 @@ public class NewGame extends JDialog {
 
 	private JButton okButton = new JButton("Start Game");
 	private JComboBox<String> PlayerChoise = new JComboBox<String>();
-	private static String[] PlayerChoiseString = { "Player vs Player", "Player vs Computer", "Computer vs Computer" };
+	private static String[] PlayerChoiseString = { "Player vs Computer", "Computer vs Computer" };
 	private JComboBox<String> StartingCash = new JComboBox<String>();
 	private static String[] StartingCashString = { "500", "1000", "1500" };
 	private int choise;

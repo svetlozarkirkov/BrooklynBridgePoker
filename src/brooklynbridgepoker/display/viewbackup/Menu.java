@@ -6,14 +6,10 @@ import javax.swing.*;
 import controller.*;
 
 public class Menu extends JPanel{
-	
-	private static String[] colorStrings = { "Red", "Blue", "Green" };
-	
+
 	Table table;
-	
 	public Menu(Table table){
-		this.setBackground(Color.GREEN);
-		this.table = table;
+		this.setBackground("resources/images/background.png");
 	}
 	
 	public JMenuBar createMenuBar() { 
@@ -61,16 +57,10 @@ public class Menu extends JPanel{
 		JMenu optionsMenu = new JMenu("Options");
 		menuBar.add(optionsMenu);
 
-		// a sub menu
-		JMenu colorMenu = new JMenu("Change Background Color");
-
-		colorListener colorListener = new colorListener(this);
-
 		// create menu items and add listener
 		for (int i = 0; i < colorStrings.length; i++) {
 			JMenuItem item = new JMenuItem(colorStrings[i]);
 			item.addActionListener(colorListener);
-			colorMenu.add(item);
 		}
 		optionsMenu.add(colorMenu);
 		
