@@ -135,7 +135,15 @@ public class HandCheck {
                         cards.get(0).getRank()==cards.get(1).getRank() && 
                         cards.get(1).getRank()!=cards.get(2).getRank() && 
                         cards.get(2).getRank() != cards.get(3).getRank() && 
-                        cards.get(3).getRank() == cards.get(4).getRank()){
+                        cards.get(3).getRank() == cards.get(4).getRank() &&
+                        cards.get(0).getRank() != cards.get(4).getRank()
+                        ||
+                        cards.get(0).getRank()!=cards.get(1).getRank() && 
+                        cards.get(1).getRank()==cards.get(2).getRank() && 
+                        cards.get(2).getRank()!= cards.get(3).getRank() && 
+                        cards.get(3).getRank()== cards.get(4).getRank() &&
+                        cards.get(0).getRank()!=cards.get(4).getRank()
+                        ){
                     
                     twoPairs=true;
                     handRank = 3;
