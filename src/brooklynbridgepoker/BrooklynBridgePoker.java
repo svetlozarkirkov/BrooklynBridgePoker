@@ -72,6 +72,11 @@ public class BrooklynBridgePoker extends Application {
         
         
         
+        
+        
+        
+        
+        
         root.getChildren().addAll(back);
         root.getChildren().addAll(newGame);
         root.getChildren().addAll(options);
