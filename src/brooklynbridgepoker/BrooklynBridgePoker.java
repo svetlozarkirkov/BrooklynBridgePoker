@@ -1,6 +1,10 @@
 
 package brooklynbridgepoker;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Random;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -50,25 +54,41 @@ public class BrooklynBridgePoker extends Application {
         exitGame.setTranslateX(400);
         exitGame.setTranslateY(328);
         
-//        Board table = new Board();
-//        table.defaultDeck();
-//        table.addHumanPlayer("Sve");
-//        table.addRound();
-//        
-//        Random rnd = new Random();
-//        int randomIndex = rnd.nextInt(table.deck.size());
-//        ArrayList<PlayCard> humanCards = new ArrayList();
-//        for (int i = 0; i < 5; i++){
-//            humanCards.add(table.deck.get(randomIndex));
-//            table.deck.remove(randomIndex);
-//            randomIndex = rnd.nextInt(table.deck.size());
-//        }
-//        table.human.setHumanPlayerCards(humanCards);
-//        for (PlayCard card: table.human.getHumanPlayerCurrentCards()){
-//            System.out.print(card.getFace()+" "+card.getSuit()+" "+card.getRank()+" "+card.getCardState());
-//            System.out.println();
-//        }
-//            
+        Board table = new Board();
+        table.defaultDeck();
+        table.addHumanPlayer("Sve");
+        table.addRound();
+        
+        for (int x = 0; x < 50; x++){
+             table.defaultDeck();
+        table.addHumanPlayer("Sve");
+        table.addRound();
+            for(int z = 0; z < 10; z++){
+                
+            Random rnd = new Random();
+        int randomIndex = rnd.nextInt(table.deck.size());
+        ArrayList<PlayCard> humanCards = new ArrayList();
+            for (int i = 0; i < 5; i++){
+                humanCards.add(table.deck.get(randomIndex));
+                table.deck.remove(randomIndex);
+                randomIndex = rnd.nextInt(table.deck.size());
+            }
+        table.human.setHumanPlayerCards(humanCards);
+        Collections.sort(table.human.getHumanPlayerCurrentCards(), new Comparator<PlayCard>() {    // sort by rank (has to be tested)
+                    @Override public int compare(PlayCard cardOne, PlayCard cardTwo) {
+                        return cardOne.getRank() - cardTwo.getRank(); // Ascending
+                    }
+                });
+            for (PlayCard card: table.human.getHumanPlayerCurrentCards()){
+                System.out.print(card.getFace()+""+card.getSuit()+"  ");
+            }
+            int result = HandCheck.checkHand(humanCards);
+            System.out.println("  unique rank: "+result);
+            }
+           
+        }
+        
+            
         
         
         

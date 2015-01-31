@@ -58,9 +58,7 @@ public class Board {
                                 deck.add(card);
 			}
 		}
-		for (int x = 0; x < 100; x++){
-			Collections.shuffle(deck);  // shuffling the deck 100 times :D
-		}
+                Collections.shuffle(deck);  // shuffling the deck
 		this.deck=deck;
 	}
      
