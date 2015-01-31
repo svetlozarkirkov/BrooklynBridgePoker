@@ -10,7 +10,9 @@ public class HandCheck {
     
     public int checkHand(ArrayList<PlayCard> cards){
         
-        int handRank=0;
+        int handRank = 0;
+        int highestCardRank = 0;
+        int cardRanksSum = 0;
         //  1  -  High Card
         //  2  -  One Pair
         //  3  -  Two Pairs
@@ -39,6 +41,14 @@ public class HandCheck {
             boolean twoPairs = false;
             boolean onePair = false;
             boolean highCard = false;
+            
+            for (int i = 0; i < 5; i++){
+                cardRanksSum+=cards.get(i).getRank();
+                if(cards.get(i).getRank()>highestCardRank){
+                    highestCardRank=cards.get(i).getRank();
+                }
+            }
+            
 
             if (cards.get(0).getRank()==cards.get(1).getRank()+1 && 
                     cards.get(1).getRank()==cards.get(2).getRank()+1 &&
