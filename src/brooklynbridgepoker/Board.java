@@ -80,6 +80,7 @@ public class Board {
          for (int i = 0; i < 5; i++){
              cards.add(this.currentDeck.get(randomIndex));
              this.currentDeck.remove(randomIndex);
+             randomIndex = rnd.nextInt(this.currentDeck.size());
          }
          this.player.setPlayerCards(cards);
      }
