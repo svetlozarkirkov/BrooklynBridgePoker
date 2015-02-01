@@ -1,13 +1,9 @@
 
 package brooklynbridgepoker;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import static com.sun.tracing.dtrace.DependencyClass.CPU;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 
 public class Board {
@@ -15,7 +11,6 @@ public class Board {
      public ArrayList<PlayCard> deck; // default deck with all 52 cards
      public ArrayList<String> cpuNamesList;  // cpu names generated for this session
      public ArrayList<PlayCard> currentDeck; // deck used each round
-     public ArrayList<CPU> computers;    // stores the computer players
      public HumanPlayer human;   // stores the human player
      public Pot currentPot;  // current pot for the round
      public int roundsCount; // tracks how many rounds were played
@@ -24,24 +19,7 @@ public class Board {
          
      }
      
-//     public static void setCpuCardsPositions(ArrayList<CPU> cpuPlayers){    // set coordinates for the cpu cards
-//         
-//         for (int i = 0; i < cpuPlayers.size(); i++){
-//             if (i==0){
-//                 cpuPlayers.get(i).setCardsXPos(0);
-//                 cpuPlayers.get(i).setCardsYPos(-150);
-//             }
-//             else if (i == 1){
-//                 cpuPlayers.get(i).setCardsXPos(-100);
-//                 cpuPlayers.get(i).setCardsYPos(-100);
-//             }
-//             else if (i == 2){
-//                 cpuPlayers.get(i).setCardsXPos(100);
-//                 cpuPlayers.get(i).setCardsYPos(-100);
-//             }
-//         }
-//     }
-     
+
      public void defaultDeck() {   // this is the default deck with all cards with type PlayCard
 		String[] faces = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
 		char[] suits = {'C','D','H','S'};
@@ -63,16 +41,6 @@ public class Board {
 	}
      
      
-     public void setCpuNamesList() throws FileNotFoundException, IOException{     // random generation of cpu names
-        ArrayList<String> names = new ArrayList();
-        BufferedReader reader = new BufferedReader(new FileReader("src/brooklynbridgepoker/resources/cpunames.txt"));
-        String line = reader.readLine();
-        while (line != null) {
-          names.add(line);
-          line = reader.readLine();
-        }
-        this.cpuNamesList=names;
-    }
      
      public void newRound(){
          this.currentDeck.clear();   // clearing the current deck
@@ -97,28 +65,7 @@ public class Board {
          this.human=new HumanPlayer();
          this.human.setHumanPlayerName(name);
      }
-     
-     public void addComputerPlayer(){
-         CPU bot = new CPU();
-         Random rnd = new Random();
-         int randomNameIndex = rnd.nextInt(this.cpuNamesList.size());
-         bot.setCPUName(this.cpuNamesList.get(randomNameIndex));
-         this.computers.add(bot);
-         this.cpuNamesList.remove(randomNameIndex);
-     }
-     
-     public void brokeCPU(CPU cpu){
-         this.computers.remove(computers.indexOf(cpu));
-     }
-     
-     public void foldCPU(CPU cpu){
-         this.currentPot.removePlayerInPot(cpu.getCPUName());
-     }
-     
-     public void foldHuman(){
-         this.currentPot.removePlayerInPot(human.getHumanPlayerName());
-     }
-     
+          
      public void brokeHuman(){
          
      }
@@ -130,9 +77,4 @@ public class Board {
          
      }
      
-     public void cpuWinsRound(CPU cpu){
-         this.computers.get(this.computers.indexOf(cpu)).cpuWon();
-         this.computers.get(this.computers.indexOf(cpu)).cpuWonCash(this.currentPot.getCurrentPotTotal());
-         this.computers.get(this.computers.indexOf(cpu)).setCPUCash(this.currentPot.getCurrentPotTotal());
-     }
 }

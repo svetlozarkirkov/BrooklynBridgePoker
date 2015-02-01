@@ -99,15 +99,11 @@ public class HumanPlayer {
     }
     
     public void humanBetinPot(Pot pot, int bet){
-        pot.insertPlayerInPot(this.name, bet);
+        pot.setCurrentPotTotal(bet);
         setHumanPlayerBet(bet);
         setHumanPlayerCash(this.cash-=bet);
     }
-    
-    public void humanCheck(){
-        
-    }
-    
+     
     public void setCombRank(){
         this.combRank=HandCheck.checkHand(this.getHumanPlayerCurrentCards());
     }
