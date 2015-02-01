@@ -1,78 +1,120 @@
 package poker.ui;
 
 import java.awt.Button;
+import java.awt.Checkbox;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Label;
 import java.awt.TextField;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
+import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
+import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
-public class Playground extends JPanel implements MouseListener{
+public class Playground extends JPanel implements ActionListener{
 	
 	private Image board;
-	Label p1 = new Label();
-	Label p2 = new Label();
-	Label p3 = new Label();
-	Label p4 = new Label();
-	Label p5 = new Label();
 	
 	TextField pot = new TextField();
+
+	private Object handRates = "Hands Values Rates Here";
+	JFormattedTextField handRatesTopField = new JFormattedTextField(handRates );
 	
+	Button start = new Button();
+	Button exit = new Button();
 	Button bet = new Button();
-	Button check = new Button();
-	Button fold = new Button();
+	Button change = new Button();
+	Label credit = new Label();
+	
+	Checkbox checkFirst = new Checkbox();
+	Checkbox checkSecond = new Checkbox();
+	Checkbox checkThird = new Checkbox();
+	Checkbox checkFourth = new Checkbox();
+	Checkbox checkFifth = new Checkbox();
 	
 	public Playground() {
 		this.setLayout(null);
 		initBoard();
-		initPlayers();
 		initPot();
 		initActions();
 	}
-
+  
+	
 	public void initActions(){
 		bet.setLabel("Bet");
-		check.setLabel("Check");
-		fold.setLabel("Fold");
+		change.setLabel("Change");
+		start.setLabel("New Game");
+		exit.setLabel("Exit");
+		credit.setText("Credit");
 		
-		bet.setBounds(330, 400, 40, 35);
-		fold.setBounds(380, 400, 40, 35);
-		check.setBounds(430, 400, 40, 35);
+		checkFirst.setBounds(260, 330, 10, 10);
+		checkSecond.setBounds(320, 330, 10, 10);
+		checkThird.setBounds(380, 330, 10, 10);
+		checkFourth.setBounds(440, 330, 10, 10);
+		checkFifth.setBounds(500, 330, 10, 10);
 		
+		bet.setBounds(350, 400, 50, 45);
+		change.setBounds(410, 400, 50, 45);
+		start.setBounds(170, 400, 80, 45);
+		exit.setBounds(570, 400, 80, 45);
+		handRatesTopField.setBounds(220, 10, 350, 170);
+		credit.setBounds(340, 357, 45, 20);
+		
+		this.add(start);
+		this.add(exit);
 		this.add(bet);
-		this.add(check);
-		this.add(fold);
+		this.add(change);
+		this.add(handRatesTopField);
+		this.add(credit);
+		this.add(checkFirst);
+		this.add(checkSecond);
+		this.add(checkThird);
+		this.add(checkFourth);
+		this.add(checkFifth);
+		start.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  System.out.println("Start");
+			}
+		});
+		
+		bet.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  System.out.println("Bet");
+			}
+		});
+		
+		change.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  System.out.println("Change cards");
+			}
+		});
+		
+		exit.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				  System.exit(0);
+			}
+		});
 	}
 	
 	private void initPot() {
 		pot.setText("500");
 		pot.setEditable(false);
-		pot.setBounds(380, 270, 45, 20);
+		pot.setBounds(380, 357, 45, 20);
 		this.add(pot);
 	}
 	
-	private void initPlayers() {
-		p1.setText("CPU1");
-		p2.setText("CPU2");
-		p3.setText("CPU3");
-		p4.setText("CPU4");
-		
-		p1.setBounds(270, 72, 40, 25);
-		p2.setBounds(505, 72, 40, 25);
-		p3.setBounds(700, 340, 40, 25);
-		p4.setBounds(70, 340, 40, 25);
-
-		this.add(p1);
-		this.add(p2);
-		this.add(p3);
-		this.add(p4);
-		
-	}
 
 	private void initBoard() {  
         loadImage();
@@ -88,37 +130,15 @@ public class Playground extends JPanel implements MouseListener{
 		g.drawImage(board, 0, 0, null);
 	}
 
-	@Override
-	public void mouseClicked(MouseEvent arg0) {
+	public void startGame(ActionEvent arg0) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
 	@Override
-	public void mouseEntered(MouseEvent arg0) {
+	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
 		
 	}
 
-
-	@Override
-	public void mouseExited(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-	@Override
-	public void mouseReleased(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }
