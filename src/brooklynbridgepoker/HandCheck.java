@@ -111,7 +111,6 @@ public class HandCheck {
                     
                     flush = true;
                     handRank = 300;
-                   // break outerloop;
                 }
                 else if (cards.get(0).getRank()==cards.get(1).getRank() && 
                         cards.get(1).getRank()==cards.get(2).getRank() && 
@@ -130,7 +129,6 @@ public class HandCheck {
                     
                     threeKind = true;
                     handRank = 200;
-                    //break outerloop;
                 }
                 else if (cards.get(0).getRank()==cards.get(1).getRank() && 
                         cards.get(1).getRank()!=cards.get(2).getRank() && 
@@ -150,12 +148,8 @@ public class HandCheck {
                         cards.get(3).getRank()== cards.get(4).getRank() &&
                         cards.get(0).getRank()!=cards.get(4).getRank()
                         ){
-                    
                     twoPairs=true;
-          
-                    
                     handRank = 150;
-                   // break outerloop;
                 }
                 else if (cards.get(0).getRank()==cards.get(1).getRank() && 
                         cards.get(1).getRank()!=cards.get(2).getRank() && 
@@ -179,20 +173,13 @@ public class HandCheck {
                         
                         onePair = true;
                         handRank=100;
-                                                
-                       // break outerloop;
-                        
                 }
                 else{
                     highCard=true;
                     handRank=50;
-                   // break outerloop;
                 }
             }
-            
-            
-            
-            
-        return handRank+cardRanksSum;
+           
+        return handRank;
         }
     }

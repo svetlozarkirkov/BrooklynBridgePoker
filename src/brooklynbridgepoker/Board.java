@@ -9,9 +9,8 @@ import java.util.Collections;
 public class Board {
      
      public ArrayList<PlayCard> deck; // default deck with all 52 cards
-     public ArrayList<String> cpuNamesList;  // cpu names generated for this session
      public ArrayList<PlayCard> currentDeck; // deck used each round
-     public HumanPlayer human;   // stores the human player
+     public Player player;   // stores the human player
      public Pot currentPot;  // current pot for the round
      public int roundsCount; // tracks how many rounds were played
      
@@ -47,12 +46,8 @@ public class Board {
          defaultDeck();
          this.currentDeck=deck;   // creating new current deck from the default one
          Collections.shuffle(this.deck); // shuffling again
-         for (int i = 0; i < this.computers.size(); i++){    // clearing the cards and the bet for each computer
-             this.computers.get(i).clearBet();
-             this.computers.get(i).clearCards();
-         }
-         this.human.clearHumanCards();   // clearing the human player cards
-         this.human.clearHumanBet(); // clears the human player bet
+         this.player.clearCards();   // clearing the human player cards
+         this.player.clearBet(); // clears the human player bet
          this.currentPot.clearPot(); // clears the pot
          addRound();
      }
@@ -61,19 +56,19 @@ public class Board {
          roundsCount++;
      }
      
-     public void addHumanPlayer(String name){
-         this.human=new HumanPlayer();
-         this.human.setHumanPlayerName(name);
+     public void addPlayer(String name){
+         this.player=new Player();
+         this.player.setPlayerName(name);
      }
           
-     public void brokeHuman(){
+     public void playerBroke(){
          
      }
      
-     public void humanWinsRound(){
-         this.human.humanWon();
-         this.human.humanWonCash(this.currentPot.getCurrentPotTotal());
-         this.human.setHumanPlayerCash(this.currentPot.getCurrentPotTotal());
+     public void playerWinsRound(){
+         this.player.playerWon();
+         this.player.playerWonCash(this.currentPot.getCurrentPotTotal());
+         this.player.setPlayerCash(this.currentPot.getCurrentPotTotal());
          
      }
      
