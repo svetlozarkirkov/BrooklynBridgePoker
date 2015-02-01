@@ -106,4 +106,33 @@ public class Board {
          this.computers.add(bot);
          this.cpuNamesList.remove(randomNameIndex);
      }
+     
+     public void brokeCPU(CPU cpu){
+         this.computers.remove(computers.indexOf(cpu));
+     }
+     
+     public void foldCPU(CPU cpu){
+         this.currentPot.removePlayerInPot(cpu.getCPUName());
+     }
+     
+     public void foldHuman(){
+         this.currentPot.removePlayerInPot(human.getHumanPlayerName());
+     }
+     
+     public void brokeHuman(){
+         
+     }
+     
+     public void humanWinsRound(){
+         this.human.humanWon();
+         this.human.humanWonCash(this.currentPot.getCurrentPotTotal());
+         this.human.setHumanPlayerCash(this.currentPot.getCurrentPotTotal());
+         
+     }
+     
+     public void cpuWinsRound(CPU cpu){
+         this.computers.get(this.computers.indexOf(cpu)).cpuWon();
+         this.computers.get(this.computers.indexOf(cpu)).cpuWonCash(this.currentPot.getCurrentPotTotal());
+         this.computers.get(this.computers.indexOf(cpu)).setCPUCash(this.currentPot.getCurrentPotTotal());
+     }
 }

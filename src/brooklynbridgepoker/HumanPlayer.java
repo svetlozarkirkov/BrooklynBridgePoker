@@ -15,6 +15,8 @@ public class HumanPlayer {
     
     private int playerCashWon;
     
+    private int combRank;
+    
     private ArrayList<PlayCard> currentCards;   // holds the player hand
     
     public HumanPlayer(){   // default constructor
@@ -58,6 +60,7 @@ public class HumanPlayer {
     }
     public void setHumanPlayerBet(int bet){ //sets the current bet the player made
         this.bet+=bet;
+        this.cash-=bet;
     }
     public void humanWon(){ // adds a winning hand for the player
         this.playerHandsWon+=1;
@@ -84,6 +87,7 @@ public class HumanPlayer {
             card.flipCard();
         }
         currentDeck.addAll(cardsRemoved); // adds removed cards back into the current deck ( maybe not needed  ??? )
+        this.setCombRank();
     }
     
     public void clearHumanCards(){  // clears the human player cards before new round or when folding
@@ -92,5 +96,23 @@ public class HumanPlayer {
     
     public void clearHumanBet(){    // clears the human player bet before new round or when folding
         this.bet=0;
+    }
+    
+    public void humanBetinPot(Pot pot, int bet){
+        pot.insertPlayerInPot(this.name, bet);
+        setHumanPlayerBet(bet);
+        setHumanPlayerCash(this.cash-=bet);
+    }
+    
+    public void humanCheck(){
+        
+    }
+    
+    public void setCombRank(){
+        this.combRank=HandCheck.checkHand(this.getHumanPlayerCurrentCards());
+    }
+    
+    public void clearCombRank(){
+        this.combRank=0;
     }
 }

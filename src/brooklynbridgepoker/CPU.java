@@ -19,6 +19,8 @@ public class CPU {
     
     private ArrayList<PlayCard> currentCards;   // holds the cpu hand
     
+    private int combRank;
+    
     private double cardsXPos;
     
     private double cardsYPos;
@@ -69,6 +71,7 @@ public class CPU {
     }
     public void setCPUBet(int bet){ //sets the current bet the cpu made
         this.bet+=bet;
+        this.cash-=bet;
     }
     
     public void cpuWon(){ // adds a winning hand to the count
@@ -125,6 +128,7 @@ public class CPU {
             card.flipCard();
         }
         currentDeck.addAll(cardsRemoved);   // adds removed cards back into the current deck
+        this.setCombRank();
     }
     
     public void clearCards(){   // clears the cpu cards before a new round or when folding
@@ -133,6 +137,24 @@ public class CPU {
     
     public void clearBet(){     // clears the cpu bet before a new round or when folding
         this.bet=0;
+    }
+    
+    public void cpuBetinPot(Pot pot, int bet){
+        pot.insertPlayerInPot(this.name, bet);
+        setCPUBet(bet);
+        setCPUCash(this.cash-=bet);
+    }
+    
+    public void cpuCheck(){
+        
+    }
+    
+    public void setCombRank(){
+        this.combRank=HandCheck.checkHand(this.getCPUCurrentCards());
+    }
+    
+    public void clearCombRank(){
+        this.combRank=0;
     }
     
 }

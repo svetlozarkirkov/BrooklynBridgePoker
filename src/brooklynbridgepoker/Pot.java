@@ -27,6 +27,7 @@ public class Pot {
     
     public void insertPlayerInPot(String name, int bet){    // inserts new player into the pot contributors
         this.playersInPot.put(name, bet);
+        this.currentPotTotal+=bet;
     }
     
     public void removePlayerInPot(String name){     // removes a player from the pot
