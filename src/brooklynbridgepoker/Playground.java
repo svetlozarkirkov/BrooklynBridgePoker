@@ -8,6 +8,7 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
@@ -22,7 +23,7 @@ public class Playground extends JPanel implements ActionListener{
         
         Board table = new Board();
         
-	private Object handRates = table.player.getPlayerName();
+	private Object handRates = "Hand Rates Here";
 	JFormattedTextField handRatesTopField = new JFormattedTextField(handRates );
 	
 	Button start = new Button();
@@ -81,14 +82,7 @@ public class Playground extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Start");
-                                
-                                table.addPlayer("Player");
-                                table.defaultDeck();
-                                table.addRound();
-                                table.giveCardsToPlayer();
-                                table.player.setCombRank();
-                                table.getHandName();
-                                
+                                Board.startNewGame(table);                                
 			}
 		});
 		
@@ -97,7 +91,7 @@ public class Playground extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				  System.out.println("Bet");
-                                  table.player.setPlayerBet(100);
+                                  table.player.setPlayerBet(100);   // sum to bet
 			}
 		});
 		
@@ -105,8 +99,9 @@ public class Playground extends JPanel implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  System.out.println("Change cards");
-                                  
+                            System.out.println("Change cards");
+                            ArrayList<Integer> indexes = new ArrayList(); // this is filled by the checkboxes
+                            table.player.changePlayerCards(table.player.getPlayerCurrentCards(),indexes,table.currentDeck);
 			}
 		});
 		

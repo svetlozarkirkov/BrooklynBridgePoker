@@ -88,4 +88,13 @@ public class Board {
      public void getHandName(){
          this.handCombination=HandCheck.handName;
      }
+     
+     public static void startNewGame(Board table){
+        table.addPlayer("Player");
+        table.defaultDeck();
+        table.addRound();
+        table.giveCardsToPlayer();
+        table.player.setCombRank();
+        table.getHandName();
+     }
 }
