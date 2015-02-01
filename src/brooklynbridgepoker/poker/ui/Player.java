@@ -69,7 +69,7 @@ public class Player {
     }
     
     // Method when the player changes some of his cards with new ones
-    public void changeHumanPlayerCards(ArrayList<PlayCard> playerCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
+    public void changePlayerCards(ArrayList<PlayCard> playerCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
         ArrayList<PlayCard> cardsRemoved = new ArrayList(); // list to store removed cards
         for (int i = 0; i < indexes.size();i++){
             cardsRemoved.add(playerCards.get(indexes.indexOf(i))); // stores the removed card into a list

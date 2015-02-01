@@ -8,11 +8,11 @@ import java.awt.Label;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
-import javax.swing.JSlider;
 
 @SuppressWarnings("serial")
 public class Playground extends JPanel implements ActionListener{
@@ -20,8 +20,10 @@ public class Playground extends JPanel implements ActionListener{
 	private Image board;
 	
 	TextField pot = new TextField();
-
-	private Object handRates = "Hands Values Rates Here";
+        
+        Board table = new Board();
+        
+	private Object handRates = "Hand Rates Here";
 	JFormattedTextField handRatesTopField = new JFormattedTextField(handRates );
 	
 	Button start = new Button();
@@ -79,7 +81,8 @@ public class Playground extends JPanel implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  System.out.println("Start");
+				System.out.println("Start");
+                                Board.startNewGame(table);                                
 			}
 		});
 		
@@ -88,6 +91,7 @@ public class Playground extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				  System.out.println("Bet");
+                                  table.player.setPlayerBet(100);   // sum to bet
 			}
 		});
 		
@@ -95,7 +99,9 @@ public class Playground extends JPanel implements ActionListener{
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				  System.out.println("Change cards");
+                            System.out.println("Change cards");
+                            ArrayList<Integer> indexes = new ArrayList(); // this is filled by the checkboxes
+                            table.player.changePlayerCards(table.player.getPlayerCurrentCards(),indexes,table.currentDeck);
 			}
 		});
 		

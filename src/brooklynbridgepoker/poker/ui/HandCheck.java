@@ -47,33 +47,33 @@ public class HandCheck {
             boolean highCard = false;
             
             for (int i = 0; i < 5; i++){
-                cardRanksSum+=cards.get(i).getRank();
-                if(cards.get(i).getRank()>highestCardRank){
-                    highestCardRank=cards.get(i).getRank();
+                cardRanksSum += cards.get(i).getRank();
+                if(cards.get(i).getRank() > highestCardRank){
+                    highestCardRank = cards.get(i).getRank();
                 }
             }
             
 
-            if (cards.get(0).getRank()==cards.get(1).getRank()-1 && 
-                    cards.get(1).getRank()==cards.get(2).getRank()-1 &&
-                    cards.get(2).getRank()==cards.get(3).getRank()-1 && 
-                    cards.get(3).getRank()==cards.get(4).getRank()-1){
+            if (cards.get(0).getRank() == cards.get(1).getRank()-1 && 
+                cards.get(1).getRank() == cards.get(2).getRank()-1 &&
+                cards.get(2).getRank() == cards.get(3).getRank()-1 && 
+                cards.get(3).getRank() == cards.get(4).getRank()-1){
 
                 straight = true;
                 handName="STRAIGHT";
                 handRank = 4;
 
-                if (cards.get(0).getSuit()==cards.get(1).getSuit() && 
-                        cards.get(1).getSuit()==cards.get(2).getSuit() && 
-                        cards.get(2).getSuit()==cards.get(3).getSuit() &&
-                        cards.get(3).getSuit()==cards.get(4).getSuit()){
+                if (cards.get(0).getSuit() == cards.get(1).getSuit() && 
+                    cards.get(1).getSuit() == cards.get(2).getSuit() && 
+                    cards.get(2).getSuit() == cards.get(3).getSuit() &&
+                    cards.get(3).getSuit() == cards.get(4).getSuit()){
 
                     straightFlush = true;
                     straight = false;
                     handName = "STRAIGHT FLUSH";
                     handRank = 50;
 
-                    if(cards.get(4).getRank()==13){
+                    if(cards.get(4).getRank() == 13){
                         royalFlush = true;
                         straightFlush = false;
                         handName = "ROYAL FLUSH";
@@ -85,26 +85,26 @@ public class HandCheck {
             outerloop:
             if (straight==false && straightFlush == false && royalFlush == false){
                 
-                if (cards.get(0).getRank()==cards.get(1).getRank() &&
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
-                        cards.get(2).getRank()==cards.get(3).getRank()
-                        || 
-                        cards.get(1).getRank()==cards.get(2).getRank() &&
-                        cards.get(2).getRank()==cards.get(3).getRank() && 
-                        cards.get(3).getRank()==cards.get(4).getRank()){
+                if (cards.get(0).getRank() == cards.get(1).getRank() &&
+                    cards.get(1).getRank() == cards.get(2).getRank() && 
+                    cards.get(2).getRank() == cards.get(3).getRank()
+                    || 
+                    cards.get(1).getRank() == cards.get(2).getRank() &&
+                    cards.get(2).getRank() == cards.get(3).getRank() && 
+                    cards.get(3).getRank() == cards.get(4).getRank()){
                     
                     fourKind = true;
                     handRank = 25;
                     handName = "FOUR OF A KIND";
                     break outerloop;
                 }
-                else if (cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
+                else if (cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() == cards.get(2).getRank() && 
                         cards.get(2).getRank() != cards.get(3).getRank() && 
                         cards.get(3).getRank() == cards.get(4).getRank()
                         ||
-                        cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
+                        cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
                         cards.get(2).getRank() == cards.get(3).getRank() && 
                         cards.get(3).getRank() == cards.get(4).getRank()){
                     
@@ -113,28 +113,28 @@ public class HandCheck {
                     handName = "FULL HOUSE";
                     break outerloop;
                 }
-                else if (cards.get(0).getSuit()==cards.get(1).getSuit() && 
-                        cards.get(1).getSuit()==cards.get(2).getSuit() && 
-                        cards.get(2).getSuit()==cards.get(3).getSuit() &&
-                        cards.get(3).getSuit()==cards.get(4).getSuit()){
+                else if (cards.get(0).getSuit() == cards.get(1).getSuit() && 
+                        cards.get(1).getSuit() == cards.get(2).getSuit() && 
+                        cards.get(2).getSuit() == cards.get(3).getSuit() &&
+                        cards.get(3).getSuit() == cards.get(4).getSuit()){
                     
                     flush = true;
                     handRank = 6;
                     handName = "FLUSH";
                     break outerloop;
                 }
-                else if (cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
+                else if (cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() == cards.get(2).getRank() && 
                         cards.get(2).getRank() != cards.get(3).getRank() && 
                         cards.get(3).getRank() != cards.get(4).getRank()
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
                         cards.get(2).getRank() == cards.get(3).getRank() && 
                         cards.get(3).getRank() == cards.get(4).getRank()
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() == cards.get(2).getRank() && 
                         cards.get(2).getRank() == cards.get(3).getRank() && 
                         cards.get(3).getRank() != cards.get(4).getRank()){
                     
@@ -143,52 +143,52 @@ public class HandCheck {
                     handName = "THREE OF A KIND";
                     break outerloop;
                 }
-                else if (cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
+                else if (cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
                         cards.get(2).getRank() == cards.get(3).getRank() && 
                         cards.get(3).getRank() != cards.get(4).getRank() &&
                         cards.get(0).getRank() != cards.get(4).getRank()
                         ||
-                        cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
+                        cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
                         cards.get(2).getRank() != cards.get(3).getRank() && 
                         cards.get(3).getRank() == cards.get(4).getRank() &&
                         cards.get(0).getRank() != cards.get(4).getRank()
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
-                        cards.get(2).getRank()!= cards.get(3).getRank() && 
-                        cards.get(3).getRank()== cards.get(4).getRank() &&
-                        cards.get(0).getRank()!=cards.get(4).getRank()
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() == cards.get(2).getRank() && 
+                        cards.get(2).getRank() != cards.get(3).getRank() && 
+                        cards.get(3).getRank() == cards.get(4).getRank() &&
+                        cards.get(0).getRank() != cards.get(4).getRank()
                         ){
                     twoPairs=true;
                     handRank = 2;
                     handName = "TWO PAIRS";
                     break outerloop;
                 }
-                else if (cards.get(0).getRank()==cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
-                        cards.get(2).getRank()!=cards.get(3).getRank() && 
-                        cards.get(3).getRank()!=cards.get(4).getRank() &&
+                else if (cards.get(0).getRank() == cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
+                        cards.get(2).getRank() != cards.get(3).getRank() && 
+                        cards.get(3).getRank() != cards.get(4).getRank() &&
                         cards.get(0).getRank()>=10
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()==cards.get(2).getRank() && 
-                        cards.get(2).getRank()!=cards.get(3).getRank() && 
-                        cards.get(3).getRank()!=cards.get(4).getRank() &&
-                        cards.get(1).getRank()>=10
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() == cards.get(2).getRank() && 
+                        cards.get(2).getRank() != cards.get(3).getRank() && 
+                        cards.get(3).getRank() != cards.get(4).getRank() &&
+                        cards.get(1).getRank() >= 10
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
-                        cards.get(2).getRank()==cards.get(3).getRank() && 
-                        cards.get(3).getRank()!=cards.get(4).getRank() &&
-                        cards.get(2).getRank()>=10
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
+                        cards.get(2).getRank() == cards.get(3).getRank() && 
+                        cards.get(3).getRank() != cards.get(4).getRank() &&
+                        cards.get(2).getRank() >= 10
                         ||
-                        cards.get(0).getRank()!=cards.get(1).getRank() && 
-                        cards.get(1).getRank()!=cards.get(2).getRank() && 
-                        cards.get(2).getRank()!=cards.get(3).getRank() && 
-                        cards.get(3).getRank()==cards.get(4).getRank() &&
-                        cards.get(3).getRank()>=10){
+                        cards.get(0).getRank() != cards.get(1).getRank() && 
+                        cards.get(1).getRank() != cards.get(2).getRank() && 
+                        cards.get(2).getRank() != cards.get(3).getRank() && 
+                        cards.get(3).getRank() == cards.get(4).getRank() &&
+                        cards.get(3).getRank() >= 10){
                         
                         jacksOrBetter = true;
                         handRank=1;
