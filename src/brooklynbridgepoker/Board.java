@@ -1,9 +1,9 @@
 
 package brooklynbridgepoker;
 
-import static com.sun.tracing.dtrace.DependencyClass.CPU;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 
 public class Board {
@@ -13,6 +13,7 @@ public class Board {
      public Player player;   // stores the human player
      public Pot currentPot;  // current pot for the round
      public int roundsCount; // tracks how many rounds were played
+     public String handCombination;
      
      public Board(){
          
@@ -36,7 +37,7 @@ public class Board {
 			}
 		}
                 Collections.shuffle(deck);  // shuffling the deck
-		this.deck=deck;
+		this.currentDeck=deck;
 	}
      
      
@@ -72,4 +73,18 @@ public class Board {
          
      }
      
+     public void giveCardsToPlayer(){
+         ArrayList<PlayCard> cards = new ArrayList();
+         Random rnd = new Random();
+         int randomIndex = rnd.nextInt(this.currentDeck.size());
+         for (int i = 0; i < 5; i++){
+             cards.add(this.currentDeck.get(randomIndex));
+             this.currentDeck.remove(randomIndex);
+         }
+         this.player.setPlayerCards(cards);
+     }
+     
+     public void getHandName(){
+         this.handCombination=HandCheck.handName;
+     }
 }
