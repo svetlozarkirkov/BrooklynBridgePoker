@@ -73,11 +73,11 @@ public class Player {
     public void changePlayerCards(ArrayList<PlayCard> playerCards, ArrayList<Integer> indexes,ArrayList<PlayCard> currentDeck){
         ArrayList<PlayCard> cardsRemoved = new ArrayList(); // list to store removed cards
         for (int i = 0; i < indexes.size();i++){
-            cardsRemoved.add(playerCards.get(indexes.indexOf(i))); // stores the removed card into a list
-            playerCards.remove(indexes.indexOf(i));    //removes the card from the player hand
+            cardsRemoved.add(playerCards.get(indexes.get(i))); // stores the removed card into a list
+            playerCards.remove(indexes.get(i));    //removes the card from the player hand
             Random randomCard = new Random();   //random
             int randomIndex = randomCard.nextInt(currentDeck.size());   //getting random index from the cards left in the current deck
-            playerCards.add(indexes.indexOf(i), currentDeck.get(randomIndex)); //adds the new card to the player hand
+            playerCards.add(indexes.get(i), currentDeck.get(randomIndex)); //adds the new card to the player hand
             currentDeck.remove(randomIndex);    // removes the card from the current deck
         }
         for (PlayCard playerCard: this.currentCards){    // unflips all player cards again (just to be sure)
