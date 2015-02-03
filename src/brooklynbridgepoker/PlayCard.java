@@ -7,7 +7,7 @@ public class PlayCard {
 	private String face;    //the card's face (example: "J")
 	private char suit;  // the card's suit("D" for diamond, etc...)
 	private String imgPath; // the path to the card face in /images
-        private final String imgPathFlipped = "/brooklynbridgepoker/resources/images/cards/b2fv.png"; // path to the image of a card back in /images
+        public final String imgPathFlipped = "/brooklynbridgepoker/resources/images/cards/b2fv.png"; // path to the image of a card back in /images
         private String image;   // current image used
         private int cardState = 0;  // 0 = the card is not shown, 1 = the card is shown
         
@@ -16,7 +16,7 @@ public class PlayCard {
 	}
 	
         public String getImgPath(){ // gets the image path in format "2D" , "AC"
-            return image;
+            return imgPath;
         }
 	public int getRank(){   // gets the card rank
 		return rank;

@@ -12,7 +12,7 @@ public class Board {
      public ArrayList<PlayCard> currentDeck; // deck used each round
      public Player player;   // stores the human player
      public Pot currentPot;  // current pot for the round
-     public int roundsCount; // tracks how many rounds were played
+     public static int roundsCount; // tracks how many rounds were played
      public String handCombination;
      
      public Board(){
@@ -32,7 +32,7 @@ public class Board {
 				card.setSuit(suits[j]);
 				card.setFace(faces[i]);
                                 card.setImage(faces[i]+suits[j]);
-                                card.flipCard(); // hides the card initially
+                                //card.flipCard(); // hides the card initially
                                 deck.add(card);
 			}
 		}
@@ -42,15 +42,11 @@ public class Board {
      
      
      
-     public void newRound(){
-         this.currentDeck.clear();   // clearing the current deck
-         defaultDeck();
-         this.currentDeck=deck;   // creating new current deck from the default one
-         Collections.shuffle(this.deck); // shuffling again
-         this.player.clearCards();   // clearing the human player cards
-         this.player.clearBet(); // clears the human player bet
-         this.currentPot.clearPot(); // clears the pot
-         addRound();
+     public void newRound(Board table){
+         if (this.player.getPlayerCash() < 100){
+             playerBroke();
+         }
+         newGame(table);
      }
      
      public void addRound(){    // adds a round to the count
@@ -63,6 +59,7 @@ public class Board {
      }
           
      public void playerBroke(){
+         System.out.println("GAME OVER");
          
      }
      
@@ -89,12 +86,19 @@ public class Board {
          this.handCombination=HandCheck.handName;
      }
      
-     public static void startNewGame(Board table){
-        table.addPlayer("Player");
+     public static void newGame(Board table){
         table.defaultDeck();
+        Collections.shuffle(table.currentDeck); // shuffling again
+        if (roundsCount>0){
+            table.player.clearCards();   // clearing the human player cards
+        table.player.clearBet(); // clears the human player bet
+        table.currentPot.clearPot(); // clears the pot
+        }
         table.addRound();
         table.giveCardsToPlayer();
         table.player.setCombRank();
         table.getHandName();
+        table.player.setPlayerBet(100);
+        
      }
 }

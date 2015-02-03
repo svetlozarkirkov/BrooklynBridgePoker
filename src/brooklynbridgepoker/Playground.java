@@ -82,7 +82,14 @@ public class Playground extends JPanel implements ActionListener{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Start");
-                                Board.startNewGame(table);                                
+                                table.addPlayer("Player");
+                                Board.newGame(table);   
+                                
+                                for (PlayCard card: table.player.getPlayerCurrentCards()){
+                                    System.out.print(card.getFace()+""+card.getSuit()+" ");
+                                }
+                                System.out.println();
+                                System.out.println(table.handCombination);
 			}
 		});
 		
