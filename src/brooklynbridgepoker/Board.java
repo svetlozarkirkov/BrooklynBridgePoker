@@ -14,6 +14,7 @@ public class Board {
      public Pot currentPot;  // current pot for the round
      public static int roundsCount; // tracks how many rounds were played
      public String handCombination;
+     public int handCash;
      
      public Board(){
          
@@ -84,6 +85,7 @@ public class Board {
      
      public void getHandName(){
          this.handCombination=HandCheck.handName;
+         this.handCash=HandCheck.checkHand(this.player.getPlayerCurrentCards())*20;
      }
      
      public static void newGame(Board table){
@@ -98,7 +100,9 @@ public class Board {
         table.giveCardsToPlayer();
         table.player.setCombRank();
         table.getHandName();
-        table.player.setPlayerBet(100);
+        table.player.setPlayerBet(50);
         
      }
+     
+     
 }
