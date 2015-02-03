@@ -59,7 +59,7 @@ public class Board {
          this.player.setPlayerName(name);
      }
           
-     public void playerBroke(){
+     public static void playerBroke(){
          System.out.println("GAME OVER");
          
      }
@@ -89,6 +89,9 @@ public class Board {
      }
      
      public static void newGame(Board table){
+         if (table.player.getPlayerCash() < 50){
+             playerBroke();
+         }
         table.defaultDeck();
         Collections.shuffle(table.currentDeck); // shuffling again
         if (roundsCount>0){

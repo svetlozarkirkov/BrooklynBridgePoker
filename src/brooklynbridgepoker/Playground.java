@@ -83,7 +83,8 @@ public class Playground extends JPanel implements ActionListener{
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Start");
                                 table.addPlayer("Player");
-                                Board.newGame(table);   
+                                table.player.setPlayerCash(500);
+                                Board.newGame(table);
                                 
                                 for (PlayCard card: table.player.getPlayerCurrentCards()){
                                     System.out.print(card.getFace()+""+card.getSuit()+" ");
