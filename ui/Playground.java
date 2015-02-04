@@ -29,6 +29,7 @@ public class Playground extends JPanel implements ActionListener {
 	String cardImgPath;
 	Board table = new Board();
 	String handName;
+	Pot potValue = new Pot();
 	TextField pot = new TextField();
 	Button start = new Button();
 	Button exit = new Button();
@@ -136,7 +137,11 @@ public class Playground extends JPanel implements ActionListener {
 	}
 
 	private void initPot() {
-		pot.setText("500");
+		int value = 0;
+		String valueString;
+		value = value + potValue.getCurrentPotTotal();
+		valueString =Integer.toString(value);
+		pot.setText(valueString);
 		pot.setEditable(false);
 		pot.setBounds(380, 357, 45, 20);
 		this.add(pot);
