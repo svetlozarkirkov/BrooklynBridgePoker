@@ -122,12 +122,11 @@ public class Playground extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				
-				System.out.println("Start");
 				initPokerButtons();
 				Board.startNewGame(table);
 				initCard();
 				if (!countGame) {
-					cashValue.setPlayerCash(100);
+					cashValue.setPlayerCash(1000);
 				}
 				
 				initCash();
@@ -158,7 +157,6 @@ public class Playground extends JPanel implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Deal");
 				deal.setEnabled(false);
 				change.setEnabled(false);
 				start.setEnabled(true);
@@ -175,7 +173,6 @@ public class Playground extends JPanel implements ActionListener {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("Change cards");
 				boolean firstCrd = checkFirst.getState();
 				boolean secondCrd = checkSecond.getState();
 				boolean thirdCrd = checkThird.getState();
@@ -296,7 +293,6 @@ public class Playground extends JPanel implements ActionListener {
 		this.add(cash);
 		
 		if (valueCashDeal < 50) {
-			System.out.println("END");
 			initGameOver();
 		}
 	}
@@ -372,7 +368,6 @@ public class Playground extends JPanel implements ActionListener {
 			currentCards = table.player.getPlayerCurrentCards().get(i);
 			imgNamePath = currentCards.getFace() + currentCards.getSuit();
 			cardImgPath = "image/cards/"+ imgNamePath +".png";
-			System.out.println(cardImgPath);
 			ImageIcon cardsImg = new ImageIcon(cardImgPath);
 			cardDraw.add(cardsImg.getImage());
 		}
