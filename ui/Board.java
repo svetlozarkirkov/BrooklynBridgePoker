@@ -89,10 +89,6 @@ public class Board {
          this.player.setPlayerCards(cards);
      }
      
-     public void getHandName(){
-         this.handCombination = HandCheck.handName;
-     }
-     
      public static void startNewGame(Board table){
         //table.addPlayer("Player");
         table.defaultDeck();
@@ -101,8 +97,7 @@ public class Board {
         table.player.setCombRank();
         table.getHandName();
      }
-     public void getHandName(){
-         this.handCombination=HandCheck.handName;
-         this.handCash=HandCheck.checkHand(this.player.getPlayerCurrentCards())*20;
+     public String getHandName(){
+         return this.handCombination=HandCheck.handName;
      }
 }

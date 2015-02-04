@@ -9,9 +9,7 @@ import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-import javax.swing.JFormattedTextField;
 import javax.swing.JPanel;
 
 @SuppressWarnings("serial")
@@ -39,15 +37,13 @@ public class Playground extends JPanel implements ActionListener {
 	Label credit = new Label();
 	Label playerCash = new Label();
 	TextField cash = new TextField();
+	TextField printHandName = new TextField();
+	HandCheck getHandName = new HandCheck();
 	Checkbox checkFirst = new Checkbox();
 	Checkbox checkSecond = new Checkbox();
 	Checkbox checkThird = new Checkbox();
 	Checkbox checkFourth = new Checkbox();
 	Checkbox checkFifth = new Checkbox();
-
-	// "1 - Jacks or Better \r\n 2 - Two Pairs \r\n 3 - Three Of A Kind \r\n 4 - Straight \r\n 6 - Flush \r\n 9 - Full House \r\n 25 - Four Of A Kind \r\n 50 - Straight Flush \r\n 250 - Royal Flush";
-	private Object handRates = "Maybe image here";
-	JFormattedTextField handRatesTopField = new JFormattedTextField(handRates);
 
 	public Playground() {
 		this.setLayout(null);
@@ -73,14 +69,11 @@ public class Playground extends JPanel implements ActionListener {
 		change.setBounds(410, 400, 50, 45);
 		start.setBounds(170, 400, 80, 45);
 		exit.setBounds(570, 400, 80, 45);
-		handRatesTopField.setBounds(220, 10, 350, 170);
-		handRatesTopField.setEditable(false);
 		credit.setBounds(340, 357, 50, 20);
 		playerCash.setBounds(350, 450, 45, 25);
 		
 		this.add(start);
 		this.add(exit);
-		this.add(handRatesTopField);
 
 		start.addActionListener(new ActionListener() {
 
@@ -94,6 +87,7 @@ public class Playground extends JPanel implements ActionListener {
 				initCash();
 				start.setEnabled(false);
 				deal.setEnabled(false);
+				initHandName();
 			}
 		});
 
@@ -130,6 +124,7 @@ public class Playground extends JPanel implements ActionListener {
 						table.player.getPlayerCurrentCards(), indexes,
 						table.currentDeck);
 				initCard();
+				initHandName();
 				deal.setEnabled(true);
 			}
 		});
@@ -165,6 +160,22 @@ public class Playground extends JPanel implements ActionListener {
 		this.add(cash);
 	}
 
+	private void initHandName() {
+		printHandName.setText(HandCheck.handName);
+		printHandName.setEditable(false);
+		printHandName.setBounds(270, 180, 100, 50);
+		this.add(printHandName);
+	}
+	
+	private void initHandNameChange() {
+		printHandName.setText(table.getHandName());
+		printHandName.setEditable(false);
+		printHandName.setBounds(270, 180, 100, 50);
+		this.add(printHandName);
+	}
+	
+	;
+	
 	private void initPokerButtons() {
 		this.add(deal);
 		this.add(change);
@@ -186,7 +197,7 @@ public class Playground extends JPanel implements ActionListener {
 	}
 	
 	public void loadImage() {
-		ImageIcon boardImg = new ImageIcon("image/table2.jpg");
+		ImageIcon boardImg = new ImageIcon("image/board2.png");
 		board = boardImg.getImage();
 	}
 
