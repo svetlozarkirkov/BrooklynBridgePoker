@@ -86,11 +86,12 @@ public class Playground extends JPanel implements ActionListener {
 				initPokerButtons();
 				Board.startNewGame(table);
 				initCard();
-				initPot();
 				if (!countGame) {
 					cashValue.setPlayerCash(1000);
-					initCash();
 				}
+				initCash();
+				initPot();
+				//cashvalue set player cash
 				start.setEnabled(false);
 				deal.setEnabled(true);
 				change.setEnabled(true);
@@ -107,7 +108,6 @@ public class Playground extends JPanel implements ActionListener {
 				deal.setEnabled(false);
 				change.setEnabled(false);
 				start.setEnabled(true);
-				cashValue.setPlayerCash(potValue.getCurrentPotTotal());
 				initCashDeal();
 			}
 		});
@@ -151,6 +151,8 @@ public class Playground extends JPanel implements ActionListener {
 	}
 
 	private void initPot() {
+		//
+		//potValue.setCurrentPotTotal(0);
 		switch (HandCheck.checkHand(holdingCards)) {
 		case 2:
 			potValue.setCurrentPotTotal(50 * 2);
@@ -198,7 +200,8 @@ public class Playground extends JPanel implements ActionListener {
 	} 
 	
 	private void initCash() {
-		cashValue.getPlayerCash();
+		//cashValue.getPlayerCash();
+		cashValue.setPlayerCash(potTotal);
 		cashValue.setPlayerBet(50);
 		int valueCash = cashValue.getPlayerCash();
 		String valueCashString;
@@ -210,8 +213,9 @@ public class Playground extends JPanel implements ActionListener {
 	} 
 	
 	private void initCashDeal() {
-		int valueCash = cashValue.getPlayerCash() + potTotal;
-		String valueCashString = Integer.toString(valueCash);
+		cashValue.setPlayerCash(potValue.getCurrentPotTotal());
+		int valueCashDeal = cashValue.getPlayerCash() + potTotal; //the bug POT+50 is here
+		String valueCashString = Integer.toString(valueCashDeal);
 		cash.setText("$" + valueCashString);
 		cash.setEditable(false);
 		cash.setBounds(400, 450, 45, 25);
