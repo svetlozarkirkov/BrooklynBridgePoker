@@ -158,6 +158,10 @@ public class Playground extends JPanel implements ActionListener {
 			potValue.setCurrentPotTotal(50 * 2);
 			break;
 
+		case 4:
+			potValue.setCurrentPotTotal(50 * 4);
+			break;	
+			
 		case 6:
 			potValue.setCurrentPotTotal(50 * 6);
 			break;
