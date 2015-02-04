@@ -7,7 +7,6 @@ import java.util.Comparator;
 
 public class HandCheck {
     public static String handName;
-    //return handRank
     public static int checkHand(ArrayList<PlayCard> currentCards){
         
         int handRank = 0;

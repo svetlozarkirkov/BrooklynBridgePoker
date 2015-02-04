@@ -10,10 +10,6 @@ public class Player {
     
     private int bet;    // holds the player bet
     
-    private int playerHandsWon; //Rounds won by the player ! count when handValue is something
-    
-    private int playerCashWon; //The amount of cash won by the player
-    
     private int combRank;
     
     private ArrayList<PlayCard> currentCards;   // holds the player hand
@@ -35,14 +31,6 @@ public class Player {
 		return this.bet;
 	}
 
-	public int getPlayerHandsWon() {
-		return this.playerHandsWon;
-	}
-
-	public int getPlayerCashWon() {
-		return this.playerCashWon;
-	}
-
 	public ArrayList<PlayCard> getPlayerCurrentCards() { // gets current player
 															// hand in arraylist
 		return this.currentCards;
@@ -62,18 +50,8 @@ public class Player {
         this.cash -= bet;
     }
     
-    public void playerWon(){ // adds a winning hand for the player
-        this.playerHandsWon += 1;
-    }
-    public void playerWonCash(int humanWinningCash){ // adds the cash won into the total
-        this.playerCashWon += humanWinningCash;
-    }
-    
     public void setPlayerCards(ArrayList<PlayCard> playerCards){    // gives cards to the human player
-        /*
-    	for(PlayCard playerCard: playerCards){
-            playerCard.unflipCard();             // shows the cards
-        } */
+
         this.currentCards = playerCards;
     }
     
@@ -87,7 +65,6 @@ public class Player {
     
     //Getting player bet, adding to the pot and update the player cash amount after bet
     public void playerBet(Pot pot, int bet){
-        //pot.setCurrentPotTotal(bet);
         setPlayerBet(bet);
         setPlayerCash(this.cash -= bet);
     }
@@ -136,16 +113,7 @@ public class Player {
 			currentDeck.remove(randomIndex); // removes the card from the
 												// current deck
 		}
-		/*
-		for (PlayCard playerCard : this.currentCards) { // unflips all player
-														// cards again (just to
-														// be sure)
-			playerCard.unflipCard();
-		}
-		for (PlayCard card : cardsRemoved) { // hides the removed cards if they
-												// were shown
-			card.flipCard();
-		} */
+
 		currentDeck.addAll(cardsRemoved); // adds removed cards back into the
 											// current deck ( maybe not needed
 											// ??? )

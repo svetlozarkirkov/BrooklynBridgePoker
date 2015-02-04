@@ -19,7 +19,6 @@ public class Board {
          
      }
      
-
      public void defaultDeck() {   // this is the default deck with all cards with type PlayCard
 		String[] faces = {"2","3","4","5","6","7","8","9","10","J","Q","K","A"};
 		char[] suits = {'C','D','H','S'};
@@ -40,8 +39,6 @@ public class Board {
 		this.currentDeck=deck;
 	}
      
-     
-     
      public void newRound(){
          this.currentDeck.clear();   // clearing the current deck
          defaultDeck();
@@ -50,32 +47,8 @@ public class Board {
          this.player.clearCards();   // clearing the human player cards
          this.player.clearBet(); // clears the human player bet
          this.currentPot.clearPot(); // clears the pot
-         addRound();
      }
-     
-     public void addRound(){    // adds a round to the count
-         roundsCount++;
-     }
-     
-     /*
-      *	Not usable for now
-      * 
-      *  	public void addPlayer(String name){
-		         this.player=new Player();
-		         this.player.setPlayerName(name);
-     		}
-          
-		     public void playerBroke(){
-		         
-		     }
-      */
-     
-     public void playerWinsRound(){
-         this.player.playerWon();
-         this.player.playerWonCash(this.currentPot.getCurrentPotTotal());
-         this.player.setPlayerCash(this.currentPot.getCurrentPotTotal());
-         
-     }
+
      
      public void giveCardsToPlayer(){
          ArrayList<PlayCard> cards = new ArrayList<PlayCard>();
@@ -90,9 +63,7 @@ public class Board {
      }
      
      public static void startNewGame(Board table){
-        //table.addPlayer("Player");
         table.defaultDeck();
-        table.addRound();
         table.giveCardsToPlayer();
         table.player.setCombRank();
         table.getHandName();
