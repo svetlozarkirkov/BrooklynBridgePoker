@@ -1,7 +1,9 @@
 # BrooklynBridgePoker  
   
 JavaFX project for basic poker game (5 cards in hand)  
-  
+
+Structure of the OBJECTS and CLASSES in the project as a clear TEXT http://pastebin.com/aKPQzAWX  
+
 OPTIONS MENU  
 
 		-Name - nickname for the player  

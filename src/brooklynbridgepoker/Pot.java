@@ -22,7 +22,7 @@ public class Pot {
     }
     
     public void setCurrentPotTotal(int bet){    // updates the pot total sum
-        this.currentPotTotal=currentPotTotal+bet;
+        this.currentPotTotal+=bet;
     }
     
     public void insertPlayerInPot(String name, int bet){    // inserts new player into the pot contributors

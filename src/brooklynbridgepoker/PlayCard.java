@@ -7,8 +7,9 @@ public class PlayCard {
 	private String face;    //the card's face (example: "J")
 	private char suit;  // the card's suit("D" for diamond, etc...)
 	private String imgPath; // the path to the card face in /images
-        private String imgPathFlipped = "/brooklynbridgepoker/images/cards/b2fv.png"; // path to the image of a card back in /images
-        private String image;
+        private final String imgPathFlipped = "/brooklynbridgepoker/resources/images/cards/b2fv.png"; // path to the image of a card back in /images
+        private String image;   // current image used
+        private int cardState = 0;  // 0 = the card is not shown, 1 = the card is shown
         
 	public PlayCard(){  //default constructor
 		
@@ -27,7 +28,7 @@ public class PlayCard {
 		return suit;
 	}
         public void setImage(String image){ //sets the image path (could be improved)
-            this.image="/brooklynbridgepoker/images/cards/"+image+".png";
+            this.imgPath="/brooklynbridgepoker/resources/images/cards/"+image+".png";
         }
 	public void setRank(int rank){  //sets the rank of the card
 		this.rank = rank;
@@ -39,11 +40,16 @@ public class PlayCard {
 		this.suit = suit;
 	}
                 
-        public void flipCard (){
-                imgPath=this.image;
+        public void flipCard (){    // hides the card
                 this.image=imgPathFlipped;
+                this.cardState=0;
         }
-        public void unflipCard(){
+        public void unflipCard(){   // unhides the card
             this.image=imgPath;
+            this.cardState=1;
+        }
+        
+        public int getCardState(){  // gets whether the card is shown or flipped
+            return this.cardState;
         }
 }
