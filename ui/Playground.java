@@ -95,6 +95,16 @@ public class Playground extends JPanel implements ActionListener {
 				start.setEnabled(false);
 				deal.setEnabled(true);
 				change.setEnabled(true);
+				checkFirst.setState(false);
+				checkSecond.setState(false);
+				checkThird.setState(false);
+				checkFourth.setState(false);
+				checkFifth.setState(false);
+				checkFirst.setEnabled(true);
+				checkSecond.setEnabled(true);
+				checkThird.setEnabled(true);
+				checkFourth.setEnabled(true);
+				checkFifth.setEnabled(true);
 				initHandName();
 				countGame = true;
 			}
@@ -108,6 +118,11 @@ public class Playground extends JPanel implements ActionListener {
 				deal.setEnabled(false);
 				change.setEnabled(false);
 				start.setEnabled(true);
+				checkFirst.setEnabled(false);
+				checkSecond.setEnabled(false);
+				checkThird.setEnabled(false);
+				checkFourth.setEnabled(false);
+				checkFifth.setEnabled(false);
 				initCashDeal();
 			}
 		});
@@ -136,7 +151,14 @@ public class Playground extends JPanel implements ActionListener {
 						table.currentDeck);
 				initCard();
 				initHandNameChange();
+				initPot();
 				change.setEnabled(false);
+				start.setEnabled(false);
+				checkFirst.setEnabled(false);
+				checkSecond.setEnabled(false);
+				checkThird.setEnabled(false);
+				checkFourth.setEnabled(false);
+				checkFifth.setEnabled(false);
 				deal.setEnabled(true);
 			}
 		});
