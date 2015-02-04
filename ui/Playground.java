@@ -29,6 +29,7 @@ public class Playground extends JPanel implements ActionListener {
 	String cardImgPath;
 	Board table = new Board();
 	String handName;
+	Player cashValue = new Player();
 	Pot potValue = new Pot();
 	TextField pot = new TextField();
 	Button start = new Button();
@@ -36,6 +37,8 @@ public class Playground extends JPanel implements ActionListener {
 	Button deal = new Button();
 	Button change = new Button();
 	Label credit = new Label();
+	Label playerCash = new Label();
+	TextField cash = new TextField();
 	Checkbox checkFirst = new Checkbox();
 	Checkbox checkSecond = new Checkbox();
 	Checkbox checkThird = new Checkbox();
@@ -57,7 +60,8 @@ public class Playground extends JPanel implements ActionListener {
 		change.setLabel("Change");
 		start.setLabel("New Game");
 		exit.setLabel("Exit");
-		credit.setText("Credit");
+		credit.setText("Credit:");
+		playerCash.setText("Cash:");
 
 		checkFirst.setBounds(260, 330, 10, 10);
 		checkSecond.setBounds(320, 330, 10, 10);
@@ -71,7 +75,8 @@ public class Playground extends JPanel implements ActionListener {
 		exit.setBounds(570, 400, 80, 45);
 		handRatesTopField.setBounds(220, 10, 350, 170);
 		handRatesTopField.setEditable(false);
-		credit.setBounds(340, 357, 45, 20);
+		credit.setBounds(340, 357, 50, 20);
+		playerCash.setBounds(350, 450, 45, 25);
 		
 		this.add(start);
 		this.add(exit);
@@ -86,6 +91,7 @@ public class Playground extends JPanel implements ActionListener {
 				initPokerButtons();
 				Board.startNewGame(table);
 				initCard();
+				initCash();
 				start.setEnabled(false);
 				deal.setEnabled(false);
 			}
@@ -97,6 +103,7 @@ public class Playground extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Deal");
 				deal.setEnabled(false);
+				initCash();
 			}
 		});
 
@@ -123,7 +130,7 @@ public class Playground extends JPanel implements ActionListener {
 						table.player.getPlayerCurrentCards(), indexes,
 						table.currentDeck);
 				initCard();
-				change.setEnabled(false);
+				deal.setEnabled(true);
 			}
 		});
 
@@ -146,11 +153,23 @@ public class Playground extends JPanel implements ActionListener {
 		pot.setBounds(380, 357, 45, 20);
 		this.add(pot);
 	}
+	
+	private void initCash() {
+		int valueCash = 0;
+		String valueCashString;
+		valueCash = valueCash + cashValue.getPlayerCash();
+		valueCashString = Integer.toString(valueCash);
+		cash.setText(valueCashString);
+		cash.setEditable(false);
+		cash.setBounds(400, 450, 45, 25);
+		this.add(cash);
+	}
 
 	private void initPokerButtons() {
 		this.add(deal);
 		this.add(change);
 		this.add(credit);
+		this.add(playerCash);
 		this.add(checkFirst);
 		this.add(checkSecond);
 		this.add(checkThird);
