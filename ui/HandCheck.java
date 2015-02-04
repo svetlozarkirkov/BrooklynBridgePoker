@@ -7,22 +7,22 @@ import java.util.Comparator;
 
 public class HandCheck {
     public static String handName;
-    
+    //return handRank
     public static int checkHand(ArrayList<PlayCard> currentCards){
         
         int handRank = 0;
         int highestCardRank = 0;
         int cardRanksSum = 0;
         
-        //  1    -  Jacks or Better
-        //  2    -  Two Pairs
-        //  3    -  Three Of A Kind
-        //  4    -  Straight
-        //  6    -  Flush
-        //  9    -  Full House
-        //  25   -  Four Of A Kind
-        //  50   -  Straight Flush
-        //  250  -  Royal Flush
+        //  2    -  Jacks or Better
+        //  4    -  Two Pairs
+        //  6    -  Three Of A Kind
+        //  8    -  Straight
+        //  12    -  Flush
+        //  18   -  Full House
+        //  50   -  Four Of A Kind
+        //  100   -  Straight Flush
+        //  500  -  Royal Flush
         
         ArrayList<PlayCard> cards = new ArrayList();
         for (PlayCard card: currentCards){
@@ -64,7 +64,7 @@ public class HandCheck {
 
                 straight = true;
                 handName="STRAIGHT";
-                handRank = 4;
+                handRank = 8;
 
                 if (cards.get(0).getSuit() == cards.get(1).getSuit() && 
                     cards.get(1).getSuit() == cards.get(2).getSuit() && 
@@ -74,13 +74,13 @@ public class HandCheck {
                     straightFlush = true;
                     straight = false;
                     handName = "STRAIGHT FLUSH";
-                    handRank = 50;
+                    handRank = 100;
 
                     if(cards.get(4).getRank() == 13){
                         royalFlush = true;
                         straightFlush = false;
                         handName = "ROYAL FLUSH";
-                        handRank = 250;
+                        handRank = 500;
                     }
             }
     }
@@ -97,7 +97,7 @@ public class HandCheck {
                     cards.get(3).getRank() == cards.get(4).getRank()){
                     
                     fourKind = true;
-                    handRank = 25;
+                    handRank = 50;
                     handName = "FOUR OF A KIND";
                     break outerloop;
                 }
@@ -112,7 +112,7 @@ public class HandCheck {
                         cards.get(3).getRank() == cards.get(4).getRank()){
                     
                     fullHouse = true;
-                    handRank = 9;
+                    handRank = 18;
                     handName = "FULL HOUSE";
                     break outerloop;
                 }
@@ -122,7 +122,7 @@ public class HandCheck {
                         cards.get(3).getSuit() == cards.get(4).getSuit()){
                     
                     flush = true;
-                    handRank = 6;
+                    handRank = 12;
                     handName = "FLUSH";
                     break outerloop;
                 }
@@ -142,7 +142,7 @@ public class HandCheck {
                         cards.get(3).getRank() != cards.get(4).getRank()){
                     
                     threeKind = true;
-                    handRank = 3;
+                    handRank = 6;
                     handName = "THREE OF A KIND";
                     break outerloop;
                 }
@@ -165,7 +165,7 @@ public class HandCheck {
                         cards.get(0).getRank() != cards.get(4).getRank()
                         ){
                     twoPairs=true;
-                    handRank = 2;
+                    handRank = 4;
                     handName = "TWO PAIRS";
                     break outerloop;
                 }
@@ -194,7 +194,7 @@ public class HandCheck {
                         cards.get(3).getRank() >= 10){
                         
                         jacksOrBetter = true;
-                        handRank=1;
+                        handRank=2;
                         handName = "JACKS OR BETTER";
                         break outerloop;
                 }

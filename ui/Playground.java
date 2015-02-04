@@ -23,6 +23,7 @@ public class Playground extends JPanel implements ActionListener {
 	Image fourthCard;
 	Image fifthCard;
 	ArrayList<Image> cardDraw = new ArrayList<>();
+	ArrayList<PlayCard> holdingCards = new ArrayList<PlayCard>();
 	String imgNamePath;
 	String cardImgPath;
 	Board table = new Board();
@@ -38,12 +39,14 @@ public class Playground extends JPanel implements ActionListener {
 	Label playerCash = new Label();
 	TextField cash = new TextField();
 	TextField printHandName = new TextField();
-	HandCheck getHandName = new HandCheck();
+	HandCheck getHandRank = new HandCheck();
 	Checkbox checkFirst = new Checkbox();
 	Checkbox checkSecond = new Checkbox();
 	Checkbox checkThird = new Checkbox();
 	Checkbox checkFourth = new Checkbox();
 	Checkbox checkFifth = new Checkbox();
+	boolean countGame = false;
+	int potTotal;
 
 	public Playground() {
 		this.setLayout(null);
@@ -54,22 +57,22 @@ public class Playground extends JPanel implements ActionListener {
 	public void initActions() {
 		deal.setLabel("Deal");
 		change.setLabel("Change");
-		start.setLabel("New Game");
+		start.setLabel("New Hand");
 		exit.setLabel("Exit");
 		credit.setText("Credit:");
 		playerCash.setText("Cash:");
 
-		checkFirst.setBounds(260, 330, 10, 10);
-		checkSecond.setBounds(320, 330, 10, 10);
-		checkThird.setBounds(380, 330, 10, 10);
-		checkFourth.setBounds(440, 330, 10, 10);
-		checkFifth.setBounds(500, 330, 10, 10);
+		checkFirst.setBounds(260, 330, 13, 13);
+		checkSecond.setBounds(320, 330, 13, 13);
+		checkThird.setBounds(380, 330, 13, 13);
+		checkFourth.setBounds(440, 330, 13, 13);
+		checkFifth.setBounds(500, 330, 13, 13);
 
 		deal.setBounds(350, 400, 50, 45);
-		change.setBounds(410, 400, 50, 45);
+		change.setBounds(410, 400, 70, 45);
 		start.setBounds(170, 400, 80, 45);
 		exit.setBounds(570, 400, 80, 45);
-		credit.setBounds(340, 357, 50, 20);
+		credit.setBounds(330, 357, 50, 20);
 		playerCash.setBounds(350, 450, 45, 25);
 		
 		this.add(start);
@@ -80,14 +83,19 @@ public class Playground extends JPanel implements ActionListener {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Start");
-				initPot();
 				initPokerButtons();
 				Board.startNewGame(table);
 				initCard();
-				initCash();
+				initPot();
+				if (!countGame) {
+					cashValue.setPlayerCash(1000);
+					initCash();
+				}
 				start.setEnabled(false);
-				deal.setEnabled(false);
+				deal.setEnabled(true);
+				change.setEnabled(true);
 				initHandName();
+				countGame = true;
 			}
 		});
 
@@ -97,7 +105,10 @@ public class Playground extends JPanel implements ActionListener {
 			public void actionPerformed(ActionEvent e) {
 				System.out.println("Deal");
 				deal.setEnabled(false);
-				initCash();
+				change.setEnabled(false);
+				start.setEnabled(true);
+				cashValue.setPlayerCash(potValue.getCurrentPotTotal());
+				initCashDeal();
 			}
 		});
 
@@ -124,7 +135,8 @@ public class Playground extends JPanel implements ActionListener {
 						table.player.getPlayerCurrentCards(), indexes,
 						table.currentDeck);
 				initCard();
-				initHandName();
+				initHandNameChange();
+				change.setEnabled(false);
 				deal.setEnabled(true);
 			}
 		});
@@ -139,42 +151,89 @@ public class Playground extends JPanel implements ActionListener {
 	}
 
 	private void initPot() {
-		int value = 0;
-		String valueString;
-		value = value + potValue.getCurrentPotTotal();
-		valueString =Integer.toString(value);
-		pot.setText(valueString);
+		switch (HandCheck.checkHand(holdingCards)) {
+		case 2:
+			potValue.setCurrentPotTotal(50 * 2);
+			break;
+
+		case 6:
+			potValue.setCurrentPotTotal(50 * 6);
+			break;
+			
+		case 8:
+			potValue.setCurrentPotTotal(50 * 8);
+			break;
+			
+		case 12:
+			potValue.setCurrentPotTotal(50 * 12);
+			break;
+			
+		case 18:
+			potValue.setCurrentPotTotal(50 * 18);
+			break;
+		
+		case 50:
+			potValue.setCurrentPotTotal(50 * 50);
+			break;
+			
+		case 100:
+			potValue.setCurrentPotTotal(50 * 100);
+			break;
+			
+		case 500:
+			potValue.setCurrentPotTotal(50 * 500);
+			break;
+			
+		default:
+			potValue.setCurrentPotTotal(0);
+			break;
+		}
+		potTotal = potValue.getCurrentPotTotal();
+		pot.setText(Integer.toString(potTotal));
 		pot.setEditable(false);
 		pot.setBounds(380, 357, 45, 20);
 		this.add(pot);
-	}
+		potValue.clearPot();
+
+	} 
 	
 	private void initCash() {
-		int valueCash = 0;
+		cashValue.getPlayerCash();
+		cashValue.setPlayerBet(50);
+		int valueCash = cashValue.getPlayerCash();
 		String valueCashString;
-		valueCash = valueCash + cashValue.getPlayerCash();
 		valueCashString = Integer.toString(valueCash);
-		cash.setText(valueCashString);
+		cash.setText("$" + valueCashString);
+		cash.setEditable(false);
+		cash.setBounds(400, 450, 45, 25);
+		this.add(cash);
+	} 
+	
+	private void initCashDeal() {
+		int valueCash = cashValue.getPlayerCash() + potTotal;
+		String valueCashString = Integer.toString(valueCash);
+		cash.setText("$" + valueCashString);
 		cash.setEditable(false);
 		cash.setBounds(400, 450, 45, 25);
 		this.add(cash);
 	}
 
 	private void initHandName() {
-		printHandName.setText(HandCheck.handName);
+		String test = HandCheck.handName;
+		printHandName.setText(test);
 		printHandName.setEditable(false);
-		printHandName.setBounds(270, 180, 100, 50);
+		printHandName.setBounds(340, 180, 120, 40);
 		this.add(printHandName);
+		this.setFocusable(true);
 	}
 	
 	private void initHandNameChange() {
 		printHandName.setText(table.getHandName());
 		printHandName.setEditable(false);
-		printHandName.setBounds(270, 180, 100, 50);
+		printHandName.setBounds(340, 180, 120, 40);
 		this.add(printHandName);
+		this.setFocusable(true);
 	}
-	
-	;
 	
 	private void initPokerButtons() {
 		this.add(deal);
@@ -187,7 +246,9 @@ public class Playground extends JPanel implements ActionListener {
 		this.add(checkFourth);
 		this.add(checkFifth);
 	}
-
+	
+	
+	//Methods for drawing
 	private void initBoard() {
 		loadImage();
 	}
@@ -202,6 +263,8 @@ public class Playground extends JPanel implements ActionListener {
 	}
 
 	public void loadCard() {
+		holdingCards.clear();
+		holdingCards.addAll(table.player.getPlayerCurrentCards());
 		cardDraw.clear();
 		for (int i = 0; i < 5; i++) {
 			currentCards = table.player.getPlayerCurrentCards().get(i);
@@ -219,6 +282,7 @@ public class Playground extends JPanel implements ActionListener {
 		repaint();
 		}
 	
+	//Drawing
 	public void paint(Graphics g) {
 		super.paint(g);
 		g.drawImage(board, 0, 0, null);

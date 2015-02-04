@@ -87,7 +87,7 @@ public class Player {
     
     //Getting player bet, adding to the pot and update the player cash amount after bet
     public void playerBet(Pot pot, int bet){
-        pot.setCurrentPotTotal(bet);
+        //pot.setCurrentPotTotal(bet);
         setPlayerBet(bet);
         setPlayerCash(this.cash -= bet);
     }

@@ -14,11 +14,11 @@ public class Pot {
     
     
     public void setCurrentPotTotal(int bet){    // updates the pot total sum
-        this.currentPotTotal+=bet;
+        this.currentPotTotal += bet;
     }
     
     
     public void clearPot(){     // clears the pot before a new round
-        this.currentPotTotal=0;
+        this.currentPotTotal = 0;
     }
 }
